@@ -1,0 +1,238 @@
+/* ==========================================================================
+   WanderLust — Global Animated Background
+   Full-page canvas + CSS animated layers (works in light & dark mode)
+   ========================================================================== */
+
+/* ── Fixed canvas layer (particle field drawn by JS) ── */
+#animated-bg-canvas {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -3;
+  pointer-events: none;
+}
+
+/* ── Gradient orb layer ── */
+.bg-orbs {
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.bg-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(90px);
+  opacity: 0.45;
+  animation: orbDrift linear infinite;
+  will-change: transform, opacity;
+}
+
+/* Light theme orbs */
+[data-theme="light"] .bg-orb-1 {
+  width: 520px;
+  height: 520px;
+  background: radial-gradient(circle, rgba(2, 132, 199, 0.35) 0%, rgba(6, 182, 212, 0.15) 70%, transparent 100%);
+  top: -120px;
+  left: -80px;
+  animation-duration: 22s;
+}
+
+[data-theme="light"] .bg-orb-2 {
+  width: 440px;
+  height: 440px;
+  background: radial-gradient(circle, rgba(249, 115, 22, 0.28) 0%, rgba(251, 191, 36, 0.12) 70%, transparent 100%);
+  top: 30%;
+  right: -100px;
+  animation-duration: 28s;
+  animation-delay: -8s;
+}
+
+[data-theme="light"] .bg-orb-3 {
+  width: 380px;
+  height: 380px;
+  background: radial-gradient(circle, rgba(16, 185, 129, 0.22) 0%, rgba(6, 182, 212, 0.1) 70%, transparent 100%);
+  bottom: 10%;
+  left: 15%;
+  animation-duration: 34s;
+  animation-delay: -15s;
+}
+
+[data-theme="light"] .bg-orb-4 {
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, rgba(139, 92, 246, 0.18) 0%, rgba(2, 132, 199, 0.1) 70%, transparent 100%);
+  bottom: 30%;
+  right: 20%;
+  animation-duration: 40s;
+  animation-delay: -20s;
+}
+
+[data-theme="light"] .bg-orb-5 {
+  width: 260px;
+  height: 260px;
+  background: radial-gradient(circle, rgba(249, 115, 22, 0.2) 0%, transparent 70%);
+  top: 60%;
+  left: 50%;
+  animation-duration: 25s;
+  animation-delay: -5s;
+}
+
+/* Dark theme orbs */
+[data-theme="dark"] .bg-orb-1 {
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(2, 132, 199, 0.22) 0%, rgba(6, 182, 212, 0.08) 70%, transparent 100%);
+  top: -150px;
+  left: -100px;
+  animation-duration: 22s;
+}
+
+[data-theme="dark"] .bg-orb-2 {
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(249, 115, 22, 0.18) 0%, rgba(251, 191, 36, 0.07) 70%, transparent 100%);
+  top: 30%;
+  right: -120px;
+  animation-duration: 28s;
+  animation-delay: -8s;
+}
+
+[data-theme="dark"] .bg-orb-3 {
+  width: 420px;
+  height: 420px;
+  background: radial-gradient(circle, rgba(56, 189, 248, 0.16) 0%, rgba(16, 185, 129, 0.06) 70%, transparent 100%);
+  bottom: 8%;
+  left: 10%;
+  animation-duration: 34s;
+  animation-delay: -15s;
+}
+
+[data-theme="dark"] .bg-orb-4 {
+  width: 360px;
+  height: 360px;
+  background: radial-gradient(circle, rgba(139, 92, 246, 0.14) 0%, rgba(56, 189, 248, 0.07) 70%, transparent 100%);
+  bottom: 35%;
+  right: 18%;
+  animation-duration: 40s;
+  animation-delay: -20s;
+}
+
+[data-theme="dark"] .bg-orb-5 {
+  width: 280px;
+  height: 280px;
+  background: radial-gradient(circle, rgba(249, 115, 22, 0.14) 0%, transparent 70%);
+  top: 65%;
+  left: 48%;
+  animation-duration: 25s;
+  animation-delay: -5s;
+}
+
+@keyframes orbDrift {
+  0%   { transform: translate(0px, 0px) scale(1); }
+  20%  { transform: translate(40px, -30px) scale(1.06); }
+  40%  { transform: translate(-25px, 50px) scale(0.95); }
+  60%  { transform: translate(55px, 35px) scale(1.08); }
+  80%  { transform: translate(-40px, -20px) scale(0.97); }
+  100% { transform: translate(0px, 0px) scale(1); }
+}
+
+/* ── Moving gradient base layer ── */
+.bg-gradient-layer {
+  position: fixed;
+  inset: 0;
+  z-index: -4;
+  background: var(--bg-main);
+  animation: gradientShift 18s ease infinite;
+  background-size: 400% 400%;
+}
+
+[data-theme="light"] .bg-gradient-layer {
+  background: linear-gradient(
+    -45deg,
+    #f0f9ff,
+    #fefce8,
+    #f0fdf4,
+    #fff1f2,
+    #f8fafc
+  );
+  background-size: 400% 400%;
+  animation: gradientShift 18s ease infinite;
+}
+
+[data-theme="dark"] .bg-gradient-layer {
+  background: linear-gradient(
+    -45deg,
+    #0b1329,
+    #0c1a2e,
+    #0f172a,
+    #110e28,
+    #0b1329
+  );
+  background-size: 400% 400%;
+  animation: gradientShift 22s ease infinite;
+}
+
+@keyframes gradientShift {
+  0%   { background-position: 0%   50%; }
+  25%  { background-position: 100% 50%; }
+  50%  { background-position: 50%  0%;  }
+  75%  { background-position: 0%   100%; }
+  100% { background-position: 0%   50%; }
+}
+
+/* ── Floating travel icons layer ── */
+.bg-floaters {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.bg-floater {
+  position: absolute;
+  font-size: 1.4rem;
+  opacity: 0;
+  animation: floaterRise linear infinite;
+  user-select: none;
+}
+
+@keyframes floaterRise {
+  0% {
+    transform: translateY(110vh) rotate(0deg);
+    opacity: 0;
+  }
+  5% {
+    opacity: 0.18;
+  }
+  90% {
+    opacity: 0.12;
+  }
+  100% {
+    transform: translateY(-10vh) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+/* Individual floaters — staggered positions & timings */
+.bg-floater:nth-child(1)  { left:  4%;  animation-duration: 20s; animation-delay:  0s;   font-size: 1.2rem; }
+.bg-floater:nth-child(2)  { left: 12%;  animation-duration: 25s; animation-delay: -5s;   font-size: 1.8rem; }
+.bg-floater:nth-child(3)  { left: 22%;  animation-duration: 18s; animation-delay: -10s;  font-size: 1.0rem; }
+.bg-floater:nth-child(4)  { left: 33%;  animation-duration: 30s; animation-delay: -2s;   font-size: 1.5rem; }
+.bg-floater:nth-child(5)  { left: 44%;  animation-duration: 22s; animation-delay: -8s;   font-size: 1.1rem; }
+.bg-floater:nth-child(6)  { left: 55%;  animation-duration: 28s; animation-delay: -14s;  font-size: 1.6rem; }
+.bg-floater:nth-child(7)  { left: 64%;  animation-duration: 16s; animation-delay: -3s;   font-size: 0.9rem; }
+.bg-floater:nth-child(8)  { left: 73%;  animation-duration: 24s; animation-delay: -18s;  font-size: 1.3rem; }
+.bg-floater:nth-child(9)  { left: 82%;  animation-duration: 32s; animation-delay: -6s;   font-size: 1.7rem; }
+.bg-floater:nth-child(10) { left: 91%;  animation-duration: 21s; animation-delay: -12s;  font-size: 1.0rem; }
+.bg-floater:nth-child(11) { left:  8%;  animation-duration: 27s; animation-delay: -20s;  font-size: 1.4rem; }
+.bg-floater:nth-child(12) { left: 50%;  animation-duration: 19s; animation-delay: -7s;   font-size: 1.2rem; }
+
+/* ── Section backgrounds — keep content cards readable ── */
+body > * {
+  position: relative;
+}

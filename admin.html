@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Dashboard | WanderLust Travel & Tour Management</title>
+  
+  <!-- Google Fonts: Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/components.css" />
+  <link rel="stylesheet" href="css/admin.css" />
+  <link rel="stylesheet" href="css/responsive.css" />
+</head>
+<body>
+
+  <div class="admin-layout">
+    <!-- Sidebar -->
+    <aside class="admin-sidebar">
+      <div class="admin-sidebar-header">
+        <div class="brand-logo-icon">✈️</div>
+        <h2>Wander<span>Lust</span> <span style="font-size: 0.75rem; color: var(--accent); font-weight: 800; background: rgba(249, 115, 22, 0.15); padding: 0.2rem 0.5rem; border-radius: var(--radius-full);">ADMIN</span></h2>
+      </div>
+
+      <ul class="admin-sidebar-menu">
+        <li class="admin-nav-item active" data-tab="overview">
+          <a><span>📊</span> Dashboard Overview</a>
+        </li>
+        <li class="admin-nav-item" data-tab="bookings">
+          <a><span>📑</span> Bookings Management</a>
+        </li>
+        <li class="admin-nav-item" data-tab="packages">
+          <a><span>🎒</span> Tour Packages Catalog</a>
+        </li>
+        <li class="admin-nav-item" data-tab="users">
+          <a><span>👥</span> Users & Access Control</a>
+        </li>
+        <li class="admin-nav-item" data-tab="reviews">
+          <a><span>⭐</span> Reviews Moderation</a>
+        </li>
+      </ul>
+
+      <div class="admin-sidebar-footer">
+        <a href="index.html" class="btn btn-secondary btn-block btn-sm" style="display: flex; align-items: center; justify-content: center; gap: 0.5rem;">
+          <span>🌐</span> View Main Website
+        </a>
+      </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="admin-main">
+      <!-- Topbar -->
+      <header class="admin-topbar">
+        <div style="display: flex; align-items: center; gap: 1rem;">
+          <button class="admin-mobile-toggle" id="adminMobileToggle" title="Toggle Menu">☰</button>
+          <h1 class="admin-topbar-title" id="adminTopbarTitle">Dashboard Overview & KPI Analytics</h1>
+        </div>
+
+        <div class="admin-topbar-actions">
+          <!-- Currency Selector -->
+          <select class="currency-select" id="adminCurrencySelect" title="Select Currency">
+            <option value="USD">USD ($)</option>
+            <option value="EUR">EUR (€)</option>
+            <option value="GBP">GBP (£)</option>
+            <option value="INR">INR (₹)</option>
+            <option value="JPY">JPY (¥)</option>
+            <option value="AUD">AUD (A$)</option>
+          </select>
+
+          <!-- Theme Toggle -->
+          <button class="control-btn theme-toggle-btn" title="Toggle Dark/Light Mode">🌙</button>
+
+          <!-- Admin Profile Pill -->
+          <div class="admin-user-pill">
+            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=150&q=80" alt="Admin" />
+            <span>Rahul Raj (Admin)</span>
+          </div>
+        </div>
+      </header>
+
+      <!-- Content Views -->
+      <div class="admin-content">
+
+        <!-- ==================== Tab 1: Overview ==================== -->
+        <div class="admin-tab-pane active" id="adminTab-overview">
+          <!-- KPI Metrics Grid -->
+          <div class="kpi-grid">
+            <div class="kpi-card">
+              <div class="kpi-info">
+                <div class="kpi-label">Total Revenue</div>
+                <div class="kpi-value" id="kpiTotalRevenue">$0</div>
+              </div>
+              <div class="kpi-icon-box green">💰</div>
+            </div>
+
+            <div class="kpi-card">
+              <div class="kpi-info">
+                <div class="kpi-label">Total Bookings</div>
+                <div class="kpi-value" id="kpiTotalBookings">0</div>
+              </div>
+              <div class="kpi-icon-box blue">📑</div>
+            </div>
+
+            <div class="kpi-card">
+              <div class="kpi-info">
+                <div class="kpi-label">Registered Users</div>
+                <div class="kpi-value" id="kpiTotalUsers">0</div>
+              </div>
+              <div class="kpi-icon-box purple">👥</div>
+            </div>
+
+            <div class="kpi-card">
+              <div class="kpi-info">
+                <div class="kpi-label">Active Packages</div>
+                <div class="kpi-value" id="kpiTotalPackages">0</div>
+              </div>
+              <div class="kpi-icon-box orange">🎒</div>
+            </div>
+          </div>
+
+          <!-- Charts Grid -->
+          <div class="charts-grid">
+            <div class="chart-card">
+              <h3>Monthly Booking Revenue (USD)</h3>
+              <div class="chart-container">
+                <canvas id="revenueChartCanvas"></canvas>
+              </div>
+            </div>
+
+            <div class="chart-card">
+              <h3>Booking Category Split</h3>
+              <div class="chart-container">
+                <canvas id="categoryChartCanvas"></canvas>
+              </div>
+            </div>
+          </div>
+
+          <!-- Quick Actions & Recent Bookings Preview -->
+          <div class="table-card">
+            <div class="table-card-header">
+              <h3 style="font-size: 1.1rem; font-weight: 800;">Recent Transactions & Bookings</h3>
+              <button class="btn btn-secondary btn-sm" onclick="adminDashboard.switchTab('bookings')">View All Bookings ➔</button>
+            </div>
+            <div style="padding: 1rem 1.5rem; font-size: 0.9rem; color: var(--text-secondary);">
+              Manage real-time customer reservations, approve pending bookings, or issue instant cancellations across Tours, Hotels, and Flights.
+            </div>
+          </div>
+        </div>
+
+        <!-- ==================== Tab 2: Bookings Management ==================== -->
+        <div class="admin-tab-pane" id="adminTab-bookings">
+          <div class="table-card">
+            <div class="table-card-header">
+              <div style="display: flex; align-items: center; gap: 1rem; flex-wrap: wrap;">
+                <input type="text" id="adminBookingSearch" class="form-control" placeholder="Search by customer name, email, or #ID..." style="width: 280px;" />
+                <select id="adminBookingStatusFilter" class="form-control" style="width: 180px;">
+                  <option value="all">All Statuses</option>
+                  <option value="confirmed">Confirmed</option>
+                  <option value="pending">Pending</option>
+                  <option value="cancelled">Cancelled</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="table-responsive">
+              <table class="admin-table">
+                <thead>
+                  <tr>
+                    <th>Booking ID</th>
+                    <th>Customer</th>
+                    <th>Item & Type</th>
+                    <th>Travel Date</th>
+                    <th>Total Amount</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="adminBookingsTbody">
+                  <!-- Dynamically populated -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- ==================== Tab 3: Tour Packages Management ==================== -->
+        <div class="admin-tab-pane" id="adminTab-packages">
+          <div class="table-card">
+            <div class="table-card-header">
+              <h3 style="font-size: 1.1rem; font-weight: 800;">Tour Packages & Destinations Catalog</h3>
+              <button class="btn btn-primary btn-sm" onclick="adminDashboard.openAddPackageModal()">+ Add New Package</button>
+            </div>
+
+            <div class="table-responsive">
+              <table class="admin-table">
+                <thead>
+                  <tr>
+                    <th>Image</th>
+                    <th>Package Title</th>
+                    <th>Category</th>
+                    <th>Duration</th>
+                    <th>Price</th>
+                    <th>Rating</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="adminPackagesTbody">
+                  <!-- Dynamically populated -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- ==================== Tab 4: Users Management ==================== -->
+        <div class="admin-tab-pane" id="adminTab-users">
+          <div class="table-card">
+            <div class="table-card-header">
+              <h3 style="font-size: 1.1rem; font-weight: 800;">Registered Travelers & System Users</h3>
+            </div>
+
+            <div class="table-responsive">
+              <table class="admin-table">
+                <thead>
+                  <tr>
+                    <th>User Details</th>
+                    <th>Role</th>
+                    <th>Member Since</th>
+                    <th>Account Status</th>
+                    <th>Access Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="adminUsersTbody">
+                  <!-- Dynamically populated -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- ==================== Tab 5: Reviews Moderation ==================== -->
+        <div class="admin-tab-pane" id="adminTab-reviews">
+          <div class="table-card">
+            <div class="table-card-header">
+              <h3 style="font-size: 1.1rem; font-weight: 800;">Customer Reviews & Feedback Moderation</h3>
+            </div>
+
+            <div class="table-responsive">
+              <table class="admin-table">
+                <thead>
+                  <tr>
+                    <th>Author & Date</th>
+                    <th>Destination / Tour</th>
+                    <th>Rating</th>
+                    <th>Comment</th>
+                    <th>Status</th>
+                    <th>Moderation Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="adminReviewsTbody">
+                  <!-- Dynamically populated -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </main>
+  </div>
+
+  <!-- Add Package Modal -->
+  <div class="modal-backdrop" id="adminAddPackageModal">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-header">
+        <h3 class="modal-title">Publish New Tour Package</h3>
+        <button class="modal-close-btn" onclick="adminDashboard.closeAddPackageModal()">✕</button>
+      </div>
+      <div class="modal-body">
+        <form id="adminAddPackageForm">
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+            <div class="form-group">
+              <label>Package Title *</label>
+              <input type="text" id="pkgTitle" class="form-control" required placeholder="e.g. 7-Day Iceland Aurora & Glacier Tour" />
+            </div>
+            <div class="form-group">
+              <label>Destination Location *</label>
+              <input type="text" id="pkgDest" class="form-control" required placeholder="e.g. Reykjavik, Iceland" />
+            </div>
+          </div>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1rem;">
+            <div class="form-group">
+              <label>Category *</label>
+              <select id="pkgCategory" class="form-control">
+                <option value="adventure">Adventure</option>
+                <option value="mountain">Mountain</option>
+                <option value="beach">Beach</option>
+                <option value="cultural">Cultural</option>
+                <option value="romantic">Romantic</option>
+                <option value="city">City</option>
+                <option value="wildlife">Wildlife</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Base Price ($ USD) *</label>
+              <input type="number" id="pkgPrice" class="form-control" required min="50" placeholder="e.g. 899" />
+            </div>
+            <div class="form-group">
+              <label>Duration (Days) *</label>
+              <input type="number" id="pkgDays" class="form-control" required min="1" max="30" placeholder="e.g. 7" />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Image Cover URL</label>
+            <input type="url" id="pkgImage" class="form-control" placeholder="https://images.unsplash.com/..." />
+          </div>
+
+          <div class="form-group">
+            <label>Tour Overview & Summary *</label>
+            <textarea id="pkgOverview" class="form-control" rows="3" required placeholder="Detailed description of the itinerary, key highlights, and traveler experience..."></textarea>
+          </div>
+
+          <button type="submit" class="btn btn-primary btn-block btn-lg">Publish Package ➔</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- JavaScript Modules -->
+  <script src="js/data.js"></script>
+  <script src="js/store.js"></script>
+  <script src="js/admin.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

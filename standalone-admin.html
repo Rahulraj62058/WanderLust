@@ -1,0 +1,4992 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Dashboard | WanderLust Travel & Tour Management</title>
+  
+  <!-- Google Fonts: Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Stylesheets -->
+  <style>/* ==========================================================================
+   WanderLust Global Styles & Design System
+   ========================================================================== */
+
+:root {
+  /* Color Palette - Light Mode */
+  --primary: #0284c7;
+  --primary-hover: #0369a1;
+  --primary-light: #e0f2fe;
+  --primary-gradient: linear-gradient(135deg, #0284c7 0%, #06b6d4 100%);
+  --accent: #f97316;
+  --accent-hover: #ea580c;
+  --accent-gradient: linear-gradient(135deg, #f97316 0%, #fbbf24 100%);
+  --secondary: #10b981;
+  --danger: #ef4444;
+  --warning: #f59e0b;
+  --success: #10b981;
+  
+  /* Neutral Palette */
+  --bg-main: #f8fafc;
+  --bg-surface: #ffffff;
+  --bg-surface-elevated: #ffffff;
+  --bg-subtle: #f1f5f9;
+  --border-color: #e2e8f0;
+  --border-subtle: #f1f5f9;
+  
+  /* Text Colors */
+  --text-primary: #0f172a;
+  --text-secondary: #475569;
+  --text-muted: #94a3b8;
+  --text-inverse: #ffffff;
+  
+  /* Glassmorphism & Shadows */
+  --glass-bg: rgba(255, 255, 255, 0.85);
+  --glass-border: rgba(255, 255, 255, 0.4);
+  --glass-blur: blur(12px);
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.08), 0 2px 4px -1px rgba(0, 0, 0, 0.04);
+  --shadow-lg: 0 10px 25px -3px rgba(0, 0, 0, 0.08), 0 4px 6px -2px rgba(0, 0, 0, 0.03);
+  --shadow-xl: 0 20px 35px -5px rgba(0, 0, 0, 0.12), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  
+  /* Typography & Sizing */
+  --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 18px;
+  --radius-xl: 26px;
+  --radius-full: 9999px;
+  --transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  --max-width: 1280px;
+}
+
+[data-theme="dark"] {
+  color-scheme: dark;
+  --primary: #38bdf8;
+  --primary-hover: #0ea5e9;
+  --primary-light: rgba(56, 189, 248, 0.15);
+  --primary-gradient: linear-gradient(135deg, #0284c7 0%, #0284c7 100%);
+  --accent: #fb923c;
+  --accent-hover: #f97316;
+  
+  --bg-main: #0b1329;
+  --bg-surface: #131f37;
+  --bg-surface-elevated: #1a2948;
+  --bg-subtle: #1e293b;
+  --border-color: #27354f;
+  --border-subtle: #1e293b;
+  
+  --text-primary: #f8fafc;
+  --text-secondary: #cbd5e1;
+  --text-muted: #64748b;
+  
+  --glass-bg: rgba(19, 31, 55, 0.92);
+  --glass-border: rgba(255, 255, 255, 0.1);
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.5);
+  --shadow-xl: 0 20px 35px rgba(0, 0, 0, 0.6);
+}
+
+select option {
+  background-color: var(--bg-surface);
+  color: var(--text-primary);
+}
+
+/* Base Resets */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--bg-main);
+  color: var(--text-primary);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+  transition: var(--transition);
+}
+
+button, input, select, textarea {
+  font-family: inherit;
+  font-size: inherit;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  outline: none;
+  background: none;
+}
+
+.container {
+  width: 100%;
+  max-width: var(--max-width);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+
+/* Section Common Styling */
+.section {
+  padding: 5rem 0;
+  position: relative;
+}
+
+.section-header {
+  text-align: center;
+  max-width: 680px;
+  margin: 0 auto 3.5rem auto;
+}
+
+.section-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.35rem 1rem;
+  background: var(--primary-light);
+  color: var(--primary);
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  border-radius: var(--radius-full);
+  margin-bottom: 0.75rem;
+}
+
+.section-title {
+  font-size: 2.35rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  line-height: 1.25;
+  margin-bottom: 0.85rem;
+  letter-spacing: -0.02em;
+}
+
+.section-title span {
+  background: var(--primary-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.section-subtitle {
+  color: var(--text-secondary);
+  font-size: 1.05rem;
+  line-height: 1.6;
+}
+
+/* ==========================================================================
+   Header & Navigation
+   ========================================================================== */
+.site-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  background: var(--glass-bg);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border-bottom: 1px solid var(--border-color);
+  transition: var(--transition);
+}
+
+.header-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 76px;
+  gap: 1.5rem;
+}
+
+.brand-logo {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 1.45rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  letter-spacing: -0.03em;
+  flex-shrink: 0;
+  margin-right: 1.25rem;
+}
+
+.brand-logo-icon {
+  width: 38px;
+  height: 38px;
+  background: var(--primary-gradient);
+  color: #fff;
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  box-shadow: 0 4px 10px rgba(2, 132, 199, 0.3);
+}
+
+.brand-logo span {
+  color: var(--primary);
+}
+
+.nav-menu {
+  display: flex;
+  align-items: center;
+  gap: clamp(0.7rem, 1.1vw, 1.4rem);
+  list-style: none;
+  flex: 1;
+  justify-content: center;
+}
+
+.nav-link {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  position: relative;
+  padding: 0.5rem 0.15rem;
+  white-space: nowrap;
+}
+
+.nav-link:hover, .nav-link.active {
+  color: var(--primary);
+}
+
+.nav-link.active::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: var(--primary-gradient);
+  border-radius: var(--radius-full);
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-shrink: 0;
+}
+
+.control-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-full);
+  background: var(--bg-subtle);
+  color: var(--text-secondary);
+  border: 1px solid var(--border-color);
+  transition: var(--transition);
+}
+
+.control-btn:hover {
+  background: var(--primary-light);
+  color: var(--primary);
+  border-color: var(--primary);
+}
+
+.currency-select {
+  padding: 0.45rem 0.8rem;
+  border-radius: var(--radius-full);
+  background: var(--bg-subtle);
+  color: var(--text-primary);
+  border: 1px solid var(--border-color);
+  font-size: 0.85rem;
+  font-weight: 600;
+  outline: none;
+  cursor: pointer;
+}
+
+.admin-nav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.5rem 1rem;
+  background: rgba(249, 115, 22, 0.12);
+  color: var(--accent);
+  border: 1px solid rgba(249, 115, 22, 0.3);
+  font-size: 0.85rem;
+  font-weight: 700;
+  border-radius: var(--radius-full);
+  transition: var(--transition);
+}
+
+.admin-nav-btn:hover {
+  background: var(--accent);
+  color: #fff;
+}
+
+.hamburger-btn {
+  display: none;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 36px;
+  height: 36px;
+  padding: 6px;
+  background: var(--bg-subtle);
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-color);
+  cursor: pointer;
+}
+
+.hamburger-btn span {
+  display: block;
+  width: 100%;
+  height: 2px;
+  background: var(--text-primary);
+  border-radius: 2px;
+  transition: var(--transition);
+}
+
+/* ==========================================================================
+   Hero Section & Search Engine Bar
+   ========================================================================== */
+.hero-section {
+  position: relative;
+  min-height: 90vh;
+  display: flex;
+  align-items: center;
+  padding-top: 90px;
+  padding-bottom: 4rem;
+  background: linear-gradient(180deg, rgba(2, 132, 199, 0.06) 0%, transparent 100%),
+              radial-gradient(circle at 10% 20%, rgba(249, 115, 22, 0.08) 0%, transparent 40%),
+              radial-gradient(circle at 90% 70%, rgba(2, 132, 199, 0.08) 0%, transparent 40%);
+}
+
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: 3.5rem;
+  align-items: center;
+}
+
+.hero-content {
+  max-width: 620px;
+}
+
+.hero-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.4rem 1.1rem;
+  background: var(--primary-light);
+  color: var(--primary);
+  border-radius: var(--radius-full);
+  font-size: 0.9rem;
+  font-weight: 700;
+  margin-bottom: 1.25rem;
+}
+
+.hero-title {
+  font-size: 3.4rem;
+  font-weight: 800;
+  line-height: 1.15;
+  color: var(--text-primary);
+  letter-spacing: -0.03em;
+  margin-bottom: 1.25rem;
+}
+
+.hero-title .gradient-text {
+  background: var(--primary-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.hero-description {
+  font-size: 1.15rem;
+  color: var(--text-secondary);
+  line-height: 1.7;
+  margin-bottom: 2rem;
+}
+
+.hero-stats {
+  display: flex;
+  align-items: center;
+  gap: 2.5rem;
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--border-color);
+}
+
+.hero-stat-item h3 {
+  font-size: 1.75rem;
+  font-weight: 800;
+  color: var(--text-primary);
+}
+
+.hero-stat-item p {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  font-weight: 600;
+}
+
+.hero-image-card {
+  position: relative;
+}
+
+.hero-main-img {
+  width: 100%;
+  height: 480px;
+  object-fit: cover;
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-xl);
+}
+
+.hero-floating-card {
+  position: absolute;
+  background: var(--glass-bg);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--border-color);
+  padding: 1rem 1.25rem;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  animation: floatAnim 4s ease-in-out infinite alternate;
+}
+
+.hero-card-1 {
+  top: -20px;
+  left: -20px;
+}
+
+.hero-card-2 {
+  bottom: 20px;
+  right: -20px;
+  animation-delay: 2s;
+}
+
+.floating-icon {
+  width: 42px;
+  height: 42px;
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.3rem;
+}
+
+.floating-icon.gold {
+  background: #fef3c7;
+  color: #d97706;
+}
+
+.floating-icon.blue {
+  background: #e0f2fe;
+  color: #0284c7;
+}
+
+@keyframes floatAnim {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-12px); }
+}
+
+/* ==========================================================================
+   Footer
+   ========================================================================== */
+.site-footer {
+  background: var(--bg-surface);
+  border-top: 1px solid var(--border-color);
+  padding: 5rem 0 2rem 0;
+  margin-top: 4rem;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1.6fr repeat(3, 1fr) 1.2fr;
+  gap: 3rem;
+  margin-bottom: 3.5rem;
+}
+
+.footer-brand p {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  margin-top: 1rem;
+  margin-bottom: 1.5rem;
+  max-width: 320px;
+}
+
+.footer-socials {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.social-link {
+  width: 38px;
+  height: 38px;
+  border-radius: var(--radius-full);
+  background: var(--bg-subtle);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-secondary);
+  font-size: 1.1rem;
+  border: 1px solid var(--border-color);
+}
+
+.social-link:hover {
+  background: var(--primary);
+  color: #fff;
+  border-color: var(--primary);
+}
+
+.footer-column h4 {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 1.25rem;
+}
+
+.footer-links {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.footer-links a {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+}
+
+.footer-links a:hover {
+  color: var(--primary);
+  padding-left: 4px;
+}
+
+.newsletter-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-top: 1rem;
+}
+
+.newsletter-form input {
+  padding: 0.75rem 1rem;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-color);
+  background: var(--bg-subtle);
+  color: var(--text-primary);
+  font-size: 0.9rem;
+  outline: none;
+}
+
+.footer-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border-color);
+  color: var(--text-muted);
+  font-size: 0.85rem;
+}
+
+/* Scroll To Top Button */
+.scroll-top-btn {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-full);
+  background: var(--primary-gradient);
+  color: #fff;
+  box-shadow: var(--shadow-lg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  opacity: 0;
+  visibility: hidden;
+  transition: var(--transition);
+  z-index: 900;
+}
+
+.scroll-top-btn.visible {
+  opacity: 1;
+  visibility: visible;
+}
+
+.scroll-top-btn:hover {
+  transform: translateY(-4px);
+}
+
+/* ==========================================================================
+   WanderLust UI Components & Modules
+   ========================================================================== */
+
+/* --- Buttons --- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  border-radius: var(--radius-md);
+  transition: var(--transition);
+  text-align: center;
+  white-space: nowrap;
+}
+
+.btn-primary {
+  background: var(--primary-gradient);
+  color: #fff;
+  box-shadow: 0 4px 14px rgba(2, 132, 199, 0.35);
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(2, 132, 199, 0.45);
+}
+
+.btn-secondary {
+  background: var(--bg-subtle);
+  color: var(--text-primary);
+  border: 1px solid var(--border-color);
+}
+
+.btn-secondary:hover {
+  background: var(--border-color);
+  color: var(--text-primary);
+}
+
+.btn-accent {
+  background: var(--accent-gradient);
+  color: #fff;
+  box-shadow: 0 4px 14px rgba(249, 115, 22, 0.35);
+}
+
+.btn-accent:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(249, 115, 22, 0.45);
+}
+
+.btn-outline {
+  border: 1px solid var(--primary);
+  color: var(--primary);
+  background: transparent;
+}
+
+.btn-outline:hover {
+  background: var(--primary);
+  color: #fff;
+}
+
+.btn-sm {
+  padding: 0.45rem 0.9rem;
+  font-size: 0.85rem;
+  border-radius: var(--radius-sm);
+}
+
+.btn-lg {
+  padding: 0.95rem 2rem;
+  font-size: 1.05rem;
+  border-radius: var(--radius-lg);
+}
+
+.btn-block {
+  width: 100%;
+}
+
+/* --- Search Engine Multi-Tab Box (Hero Widget) --- */
+.search-widget {
+  background: var(--glass-bg);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-xl);
+  padding: 1.75rem 2rem;
+  box-shadow: var(--shadow-xl);
+  margin-top: 3.5rem;
+  position: relative;
+  z-index: 100;
+}
+
+.search-tabs {
+  display: flex;
+  gap: 0.75rem;
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.search-tab-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.6rem 1.4rem;
+  border-radius: var(--radius-full);
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--text-secondary);
+  background: var(--bg-subtle);
+  transition: var(--transition);
+}
+
+.search-tab-btn.active {
+  background: var(--primary-gradient);
+  color: #fff;
+  box-shadow: 0 4px 12px rgba(2, 132, 199, 0.3);
+}
+
+.search-pane {
+  display: none;
+}
+
+.search-pane.active {
+  display: block;
+}
+
+.search-form-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr) auto;
+  gap: 1rem;
+  align-items: flex-end;
+}
+
+.search-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.search-field label {
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-muted);
+}
+
+.search-input-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 0.7rem 0.9rem;
+  transition: var(--transition);
+}
+
+.search-input-wrapper:focus-within {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px var(--primary-light);
+}
+
+.search-input-wrapper input,
+.search-input-wrapper select {
+  border: none;
+  background: transparent;
+  width: 100%;
+  color: var(--text-primary);
+  font-size: 0.95rem;
+  font-weight: 600;
+  outline: none;
+  cursor: pointer;
+}
+
+.search-input-wrapper input[type="text"] {
+  cursor: text;
+}
+
+/* --- Filter & Category Bar --- */
+.filter-bar-container {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: 1.25rem 1.5rem;
+  margin-bottom: 2.5rem;
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.category-pills {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  overflow-x: auto;
+  padding-bottom: 0.35rem;
+  scrollbar-width: thin;
+}
+
+.pill-btn {
+  padding: 0.5rem 1.2rem;
+  border-radius: var(--radius-full);
+  background: var(--bg-subtle);
+  color: var(--text-secondary);
+  font-size: 0.88rem;
+  font-weight: 600;
+  white-space: nowrap;
+  border: 1px solid var(--border-color);
+  transition: var(--transition);
+}
+
+.pill-btn:hover, .pill-btn.active {
+  background: var(--primary);
+  color: #fff;
+  border-color: var(--primary);
+}
+
+.filter-controls-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border-color);
+}
+
+.search-box-inline {
+  flex: 1;
+  min-width: 240px;
+  position: relative;
+}
+
+.search-box-inline input {
+  width: 100%;
+  padding: 0.65rem 1rem 0.65rem 2.4rem;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-color);
+  background: var(--bg-subtle);
+  color: var(--text-primary);
+  font-size: 0.9rem;
+  outline: none;
+}
+
+.search-box-inline .icon {
+  position: absolute;
+  left: 0.85rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-muted);
+}
+
+.filter-sliders {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.range-slider-wrap {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+.range-slider-wrap input[type="range"] {
+  accent-color: var(--primary);
+  cursor: pointer;
+}
+
+.sort-select-wrap select {
+  padding: 0.55rem 1rem;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-color);
+  background: var(--bg-subtle);
+  color: var(--text-primary);
+  font-size: 0.88rem;
+  font-weight: 600;
+  outline: none;
+  cursor: pointer;
+}
+
+/* --- Cards Grid & Destination Cards --- */
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 2rem;
+}
+
+.destination-card {
+  background: var(--bg-surface);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border-color);
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+  transition: var(--transition);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.destination-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-xl);
+  border-color: var(--primary-light);
+}
+
+.card-img-wrap {
+  position: relative;
+  height: 220px;
+  overflow: hidden;
+}
+
+.card-img-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.destination-card:hover .card-img-wrap img {
+  transform: scale(1.08);
+}
+
+.card-badge {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  padding: 0.3rem 0.75rem;
+  background: rgba(15, 23, 42, 0.75);
+  backdrop-filter: blur(4px);
+  color: #fff;
+  font-size: 0.75rem;
+  font-weight: 700;
+  border-radius: var(--radius-full);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.card-wishlist-btn {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-full);
+  background: rgba(255, 255, 255, 0.9);
+  color: #64748b;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  box-shadow: var(--shadow-sm);
+  transition: var(--transition);
+}
+
+.card-wishlist-btn:hover, .card-wishlist-btn.active {
+  color: #ef4444;
+  background: #fff;
+  transform: scale(1.1);
+}
+
+.card-content {
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.card-location {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  font-weight: 600;
+  margin-bottom: 0.4rem;
+}
+
+.card-title {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  line-height: 1.35;
+  margin-bottom: 0.5rem;
+}
+
+.card-desc {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+  margin-bottom: 1.25rem;
+  flex-grow: 1;
+}
+
+.card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border-color);
+}
+
+.card-price-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.card-price-info .label {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.card-price-info .amount {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: var(--primary);
+}
+
+.card-rating-badge {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  background: #fef3c7;
+  color: #b45309;
+  padding: 0.25rem 0.6rem;
+  border-radius: var(--radius-full);
+  font-size: 0.82rem;
+  font-weight: 700;
+}
+
+/* --- Tour Package Cards --- */
+.package-card {
+  background: var(--bg-surface);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border-color);
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+  transition: var(--transition);
+  display: flex;
+  flex-direction: column;
+}
+
+.package-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-xl);
+  border-color: var(--primary-light);
+}
+
+.pkg-duration-pill {
+  position: absolute;
+  bottom: 1rem;
+  left: 1rem;
+  background: rgba(15, 23, 42, 0.85);
+  backdrop-filter: blur(4px);
+  color: #fff;
+  padding: 0.3rem 0.75rem;
+  border-radius: var(--radius-full);
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+.pkg-specs {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 0.85rem;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+}
+
+.pkg-spec-item {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.pkg-highlights-list {
+  list-style: none;
+  margin-bottom: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.pkg-highlights-list li {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.pkg-highlights-list li::before {
+  content: '✓';
+  color: var(--success);
+  font-weight: 800;
+}
+
+/* --- Hotel Card --- */
+.hotel-card {
+  background: var(--bg-surface);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border-color);
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+  display: flex;
+  flex-direction: column;
+  transition: var(--transition);
+}
+
+.hotel-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-xl);
+}
+
+.amenities-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-bottom: 1rem;
+}
+
+.amenity-tag {
+  font-size: 0.75rem;
+  background: var(--bg-subtle);
+  color: var(--text-secondary);
+  padding: 0.2rem 0.55rem;
+  border-radius: var(--radius-sm);
+  font-weight: 600;
+}
+
+/* --- Flight Card --- */
+.flight-card {
+  background: var(--bg-surface);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border-color);
+  padding: 1.5rem;
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  margin-bottom: 1.25rem;
+  transition: var(--transition);
+}
+
+.flight-card:hover {
+  box-shadow: var(--shadow-md);
+  border-color: var(--primary);
+}
+
+.flight-airline {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  min-width: 160px;
+}
+
+.flight-icon-box {
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-md);
+  background: var(--primary-light);
+  color: var(--primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+}
+
+.flight-route-info {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  flex: 1;
+}
+
+.flight-point {
+  text-align: center;
+}
+
+.flight-point .time {
+  font-size: 1.3rem;
+  font-weight: 800;
+  color: var(--text-primary);
+}
+
+.flight-point .airport {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  font-weight: 600;
+}
+
+.flight-duration-line {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+  position: relative;
+}
+
+.flight-duration-line .duration {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  margin-bottom: 0.25rem;
+}
+
+.flight-line {
+  width: 100%;
+  height: 2px;
+  background: var(--border-color);
+  position: relative;
+}
+
+.flight-line::after {
+  content: '✈';
+  position: absolute;
+  top: -8px;
+  right: calc(50% - 6px);
+  font-size: 0.85rem;
+  color: var(--primary);
+}
+
+.flight-duration-line .stops {
+  font-size: 0.75rem;
+  color: var(--success);
+  font-weight: 700;
+  margin-top: 0.25rem;
+}
+
+.flight-price-action {
+  text-align: right;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+/* --- Itinerary Planner Section --- */
+.itinerary-container {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-xl);
+  padding: 2.5rem;
+  box-shadow: var(--shadow-md);
+}
+
+.itinerary-header-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.itinerary-days-nav {
+  display: flex;
+  gap: 0.6rem;
+  overflow-x: auto;
+  padding-bottom: 0.5rem;
+}
+
+.itinerary-day-tab {
+  padding: 0.6rem 1.4rem;
+  border-radius: var(--radius-full);
+  background: var(--bg-subtle);
+  color: var(--text-secondary);
+  font-weight: 700;
+  font-size: 0.9rem;
+  border: 1px solid var(--border-color);
+  transition: var(--transition);
+}
+
+.itinerary-day-tab.active {
+  background: var(--primary-gradient);
+  color: #fff;
+  border-color: transparent;
+}
+
+.itinerary-timeline {
+  position: relative;
+  padding-left: 2rem;
+  margin-top: 1.5rem;
+}
+
+.itinerary-timeline::before {
+  content: '';
+  position: absolute;
+  left: 7px;
+  top: 10px;
+  bottom: 10px;
+  width: 2px;
+  background: var(--primary-light);
+}
+
+.timeline-item {
+  position: relative;
+  margin-bottom: 2rem;
+}
+
+.timeline-dot {
+  position: absolute;
+  left: -2rem;
+  top: 4px;
+  width: 16px;
+  height: 16px;
+  border-radius: var(--radius-full);
+  background: var(--primary);
+  border: 3px solid var(--bg-surface);
+  box-shadow: 0 0 0 2px var(--primary);
+}
+
+.timeline-card {
+  background: var(--bg-subtle);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: 1.25rem 1.5rem;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.timeline-card h4 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 0.35rem;
+}
+
+.timeline-card .meta {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin-bottom: 0.5rem;
+  display: flex;
+  gap: 1rem;
+}
+
+.timeline-card .notes {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+}
+
+/* --- Photo Gallery --- */
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+.gallery-item {
+  position: relative;
+  height: 260px;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.gallery-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.gallery-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 40%, rgba(15, 23, 42, 0.85) 100%);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 1.25rem;
+  opacity: 0;
+  transition: var(--transition);
+}
+
+.gallery-item:hover .gallery-overlay {
+  opacity: 1;
+}
+
+.gallery-item:hover img {
+  transform: scale(1.08);
+}
+
+.gallery-overlay h4 {
+  color: #fff;
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+
+.gallery-overlay p {
+  color: #cbd5e1;
+  font-size: 0.85rem;
+}
+
+/* --- Reviews & Ratings --- */
+.reviews-summary-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-xl);
+  padding: 2rem;
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 2.5rem;
+  align-items: center;
+  margin-bottom: 3rem;
+}
+
+.score-box {
+  text-align: center;
+  padding-right: 2rem;
+  border-right: 1px solid var(--border-color);
+}
+
+.big-rating-number {
+  font-size: 4rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  line-height: 1;
+  margin-bottom: 0.5rem;
+}
+
+.stars-rating {
+  color: #f59e0b;
+  font-size: 1.3rem;
+  margin-bottom: 0.5rem;
+}
+
+.rating-bar-row {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 0.6rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+.progress-track {
+  flex: 1;
+  height: 8px;
+  background: var(--bg-subtle);
+  border-radius: var(--radius-full);
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background: var(--accent-gradient);
+  border-radius: var(--radius-full);
+}
+
+.review-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem;
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.review-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.reviewer-profile {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+}
+
+.reviewer-avatar {
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-full);
+  object-fit: cover;
+}
+
+.reviewer-name {
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: var(--text-primary);
+}
+
+.review-trip-tag {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+}
+
+.review-body {
+  font-size: 0.92rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+/* --- Contact & FAQ --- */
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+}
+
+.contact-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-xl);
+  padding: 2.5rem;
+  box-shadow: var(--shadow-md);
+}
+
+.form-group {
+  margin-bottom: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.form-group label {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.form-control {
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  background: var(--bg-subtle);
+  color: var(--text-primary);
+  font-size: 0.95rem;
+  outline: none;
+  transition: var(--transition);
+}
+
+.form-control:focus {
+  border-color: var(--primary);
+  background: var(--bg-surface);
+  box-shadow: 0 0 0 3px var(--primary-light);
+}
+
+.faq-accordion {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.faq-item {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+
+.faq-question {
+  width: 100%;
+  padding: 1.25rem 1.5rem;
+  text-align: left;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+}
+
+.faq-answer {
+  padding: 0 1.5rem 1.25rem 1.5rem;
+  font-size: 0.92rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  display: none;
+}
+
+.faq-item.open .faq-answer {
+  display: block;
+}
+
+.faq-item.open .faq-icon {
+  transform: rotate(180deg);
+}
+
+/* ==========================================================================
+   Modals & Lightbox
+   ========================================================================== */
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.75);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  z-index: 2000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  opacity: 0;
+  visibility: hidden;
+  transition: var(--transition);
+}
+
+.modal-backdrop.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.modal-dialog {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-xl);
+  width: 100%;
+  max-width: 640px;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: var(--shadow-xl);
+  transform: scale(0.95);
+  transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+}
+
+.modal-dialog.modal-lg {
+  max-width: 900px;
+}
+
+.modal-backdrop.active .modal-dialog {
+  transform: scale(1);
+}
+
+.modal-header {
+  padding: 1.5rem 2rem;
+  border-bottom: 1px solid var(--border-color);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: sticky;
+  top: 0;
+  background: var(--bg-surface);
+  z-index: 10;
+}
+
+.modal-title {
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: var(--text-primary);
+}
+
+.modal-close-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-full);
+  background: var(--bg-subtle);
+  color: var(--text-secondary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  transition: var(--transition);
+}
+
+.modal-close-btn:hover {
+  background: var(--danger);
+  color: #fff;
+}
+
+.modal-body {
+  padding: 2rem;
+}
+
+.modal-footer {
+  padding: 1.25rem 2rem;
+  border-top: 1px solid var(--border-color);
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 1rem;
+  background: var(--bg-subtle);
+}
+
+/* Lightbox Modal */
+.lightbox-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.92);
+  z-index: 3000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: var(--transition);
+}
+
+.lightbox-modal.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.lightbox-image-container {
+  max-width: 85vw;
+  max-height: 80vh;
+  position: relative;
+}
+
+.lightbox-image-container img {
+  max-width: 100%;
+  max-height: 80vh;
+  border-radius: var(--radius-md);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.8);
+}
+
+.lightbox-controls {
+  position: absolute;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 2rem;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+
+.lightbox-nav-btn {
+  pointer-events: auto;
+  width: 48px;
+  height: 48px;
+  border-radius: var(--radius-full);
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(6px);
+  color: #fff;
+  font-size: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--transition);
+}
+
+.lightbox-nav-btn:hover {
+  background: #fff;
+  color: #000;
+}
+
+.lightbox-caption {
+  color: #fff;
+  text-align: center;
+  margin-top: 1.25rem;
+  font-size: 1rem;
+}
+
+/* --- Floating AI Chatbot Widget --- */
+.chatbot-toggle-btn {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  width: 58px;
+  height: 58px;
+  border-radius: var(--radius-full);
+  background: var(--primary-gradient);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.6rem;
+  box-shadow: var(--shadow-xl);
+  z-index: 1500;
+  transition: var(--transition);
+}
+
+.chatbot-toggle-btn:hover {
+  transform: scale(1.08);
+}
+
+.chatbot-window {
+  position: fixed;
+  bottom: 6rem;
+  right: 2rem;
+  width: 370px;
+  height: 520px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-xl);
+  z-index: 1500;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(20px) scale(0.95);
+  transition: var(--transition);
+}
+
+.chatbot-window.active {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0) scale(1);
+}
+
+.chatbot-header {
+  background: var(--primary-gradient);
+  color: #fff;
+  padding: 1rem 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.chatbot-messages {
+  flex: 1;
+  padding: 1.25rem;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  background: var(--bg-subtle);
+}
+
+.chat-bubble {
+  max-width: 80%;
+  padding: 0.75rem 1rem;
+  border-radius: var(--radius-lg);
+  font-size: 0.88rem;
+  line-height: 1.45;
+}
+
+.chat-bubble.bot {
+  background: var(--bg-surface);
+  color: var(--text-primary);
+  border-bottom-left-radius: 4px;
+  border: 1px solid var(--border-color);
+  align-self: flex-start;
+}
+
+.chat-bubble.user {
+  background: var(--primary);
+  color: #fff;
+  border-bottom-right-radius: 4px;
+  align-self: flex-end;
+}
+
+.chatbot-suggestions {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  padding: 0.6rem 1rem;
+  background: var(--bg-surface);
+  border-top: 1px solid var(--border-color);
+}
+
+.chat-suggestion-chip {
+  font-size: 0.75rem;
+  padding: 0.3rem 0.6rem;
+  background: var(--primary-light);
+  color: var(--primary);
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.chatbot-input-bar {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1rem;
+  background: var(--bg-surface);
+  border-top: 1px solid var(--border-color);
+}
+
+.chatbot-input-bar input {
+  flex: 1;
+  padding: 0.5rem 0.75rem;
+  border-radius: var(--radius-full);
+  border: 1px solid var(--border-color);
+  background: var(--bg-subtle);
+  color: var(--text-primary);
+  font-size: 0.88rem;
+  outline: none;
+}
+
+/* --- Toast Notification System --- */
+.toast-container {
+  position: fixed;
+  top: 1.5rem;
+  right: 1.5rem;
+  z-index: 4000;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  pointer-events: none;
+}
+
+.toast {
+  pointer-events: auto;
+  min-width: 280px;
+  max-width: 380px;
+  padding: 1rem 1.25rem;
+  border-radius: var(--radius-md);
+  background: var(--bg-surface);
+  color: var(--text-primary);
+  border: 1px solid var(--border-color);
+  box-shadow: var(--shadow-lg);
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  animation: slideInRight 0.3s ease;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.toast.toast-success {
+  border-left: 4px solid var(--success);
+}
+
+.toast.toast-error {
+  border-left: 4px solid var(--danger);
+}
+
+.toast.toast-info {
+  border-left: 4px solid var(--primary);
+}
+
+@keyframes slideInRight {
+  from { transform: translateX(100%); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+
+/* ==========================================================================
+   WanderLust Admin Panel Dashboard Styles
+   ========================================================================== */
+
+.admin-layout {
+  display: flex;
+  min-height: 100vh;
+  background: var(--bg-main);
+}
+
+/* Admin Sidebar */
+.admin-sidebar {
+  width: 260px;
+  background: var(--bg-surface);
+  border-right: 1px solid var(--border-color);
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 100;
+  transition: var(--transition);
+}
+
+.admin-sidebar-header {
+  padding: 1.5rem;
+  border-bottom: 1px solid var(--border-color);
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.admin-sidebar-header h2 {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: var(--text-primary);
+}
+
+.admin-sidebar-menu {
+  list-style: none;
+  padding: 1.25rem 0.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  flex: 1;
+}
+
+.admin-nav-item a {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  padding: 0.75rem 1rem;
+  border-radius: var(--radius-md);
+  color: var(--text-secondary);
+  font-weight: 600;
+  font-size: 0.92rem;
+  transition: var(--transition);
+  cursor: pointer;
+}
+
+.admin-nav-item a:hover,
+.admin-nav-item.active a {
+  background: var(--primary-light);
+  color: var(--primary);
+}
+
+.admin-sidebar-footer {
+  padding: 1.25rem;
+  border-top: 1px solid var(--border-color);
+}
+
+/* Admin Main Content */
+.admin-main {
+  margin-left: 260px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.admin-topbar {
+  height: 70px;
+  background: var(--bg-surface);
+  border-bottom: 1px solid var(--border-color);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 2rem;
+  position: sticky;
+  top: 0;
+  z-index: 90;
+}
+
+.admin-topbar-title {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: var(--text-primary);
+}
+
+.admin-topbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+}
+
+.admin-user-pill {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  background: var(--bg-subtle);
+  padding: 0.35rem 0.85rem 0.35rem 0.35rem;
+  border-radius: var(--radius-full);
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+.admin-user-pill img {
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-full);
+}
+
+.admin-content {
+  padding: 2rem;
+  flex: 1;
+}
+
+.admin-tab-pane {
+  display: none;
+}
+
+.admin-tab-pane.active {
+  display: block;
+  animation: fadeIn 0.25s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* KPI Metric Cards Grid */
+.kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.kpi-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem;
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.kpi-info .kpi-label {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.35rem;
+}
+
+.kpi-info .kpi-value {
+  font-size: 1.85rem;
+  font-weight: 800;
+  color: var(--text-primary);
+}
+
+.kpi-icon-box {
+  width: 50px;
+  height: 50px;
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+}
+
+.kpi-icon-box.blue {
+  background: var(--primary-light);
+  color: var(--primary);
+}
+
+.kpi-icon-box.green {
+  background: #dcfce7;
+  color: #16a34a;
+}
+
+.kpi-icon-box.orange {
+  background: #ffedd5;
+  color: #ea580c;
+}
+
+.kpi-icon-box.purple {
+  background: #f3e8ff;
+  color: #9333ea;
+}
+
+/* Charts & Analytics Container */
+.charts-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.chart-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem;
+  box-shadow: var(--shadow-sm);
+}
+
+.chart-card h3 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: var(--text-primary);
+}
+
+.chart-container {
+  height: 240px;
+  position: relative;
+}
+
+/* Admin Data Tables */
+.table-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+}
+
+.table-card-header {
+  padding: 1.25rem 1.5rem;
+  border-bottom: 1px solid var(--border-color);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.table-responsive {
+  overflow-x: auto;
+  width: 100%;
+}
+
+.admin-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  font-size: 0.9rem;
+}
+
+.admin-table th {
+  background: var(--bg-subtle);
+  color: var(--text-muted);
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  letter-spacing: 0.05em;
+  padding: 0.9rem 1.25rem;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.admin-table td {
+  padding: 1rem 1.25rem;
+  border-bottom: 1px solid var(--border-subtle);
+  color: var(--text-secondary);
+  vertical-align: middle;
+}
+
+.admin-table tr:hover td {
+  background: var(--bg-subtle);
+}
+
+/* Status Badges */
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.25rem 0.65rem;
+  border-radius: var(--radius-full);
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+.status-badge.confirmed,
+.status-badge.active,
+.status-badge.approved {
+  background: #dcfce7;
+  color: #16a34a;
+}
+
+.status-badge.pending {
+  background: #fef3c7;
+  color: #d97706;
+}
+
+.status-badge.cancelled,
+.status-badge.suspended,
+.status-badge.rejected {
+  background: #fee2e2;
+  color: #dc2626;
+}
+
+/* Action Button Group */
+.table-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.btn-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-sm);
+  background: var(--bg-subtle);
+  color: var(--text-secondary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.95rem;
+  border: 1px solid var(--border-color);
+  transition: var(--transition);
+}
+
+.btn-icon:hover {
+  background: var(--primary);
+  color: #fff;
+  border-color: var(--primary);
+}
+
+.btn-icon.danger:hover {
+  background: var(--danger);
+  border-color: var(--danger);
+  color: #fff;
+}
+
+/* Mobile Sidebar Toggle */
+.admin-mobile-toggle {
+  display: none;
+  font-size: 1.3rem;
+  color: var(--text-primary);
+  background: none;
+  border: none;
+}
+
+@media (max-width: 900px) {
+  .admin-sidebar {
+    transform: translateX(-100%);
+  }
+
+  .admin-sidebar.open {
+    transform: translateX(0);
+  }
+
+  .admin-main {
+    margin-left: 0;
+  }
+
+  .admin-mobile-toggle {
+    display: block;
+  }
+
+  .charts-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ==========================================================================
+   WanderLust Responsive Styles & Media Queries
+   ========================================================================== */
+
+/* --- Medium Devices (Tablets, max 1024px) --- */
+@media (max-width: 1024px) {
+  .hero-grid {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+    text-align: center;
+  }
+
+  .hero-content {
+    max-width: 100%;
+    margin: 0 auto;
+  }
+
+  .hero-stats {
+    justify-content: center;
+  }
+
+  .search-form-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .search-form-grid .search-btn-wrap {
+    grid-column: span 2;
+  }
+
+  .footer-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .reviews-summary-card {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .score-box {
+    border-right: none;
+    border-bottom: 1px solid var(--border-color);
+    padding-right: 0;
+    padding-bottom: 1.5rem;
+  }
+
+  .contact-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .flight-card {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .flight-route-info {
+    width: 100%;
+  }
+
+  .flight-price-action {
+    width: 100%;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border-color);
+  }
+}
+
+/* --- Navigation Collapse Breakpoint (max 1140px) --- */
+@media (max-width: 1140px) {
+  .hamburger-btn {
+    display: flex;
+  }
+
+  .nav-menu {
+    position: fixed;
+    top: 76px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: var(--bg-surface);
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 2rem 1.5rem;
+    gap: 1.25rem;
+    border-bottom: 1px solid var(--border-color);
+    box-shadow: var(--shadow-xl);
+    transform: translateY(-150%);
+    opacity: 0;
+    visibility: hidden;
+    transition: transform 0.35s ease, opacity 0.3s ease;
+    z-index: 999;
+  }
+
+  .nav-menu.open {
+    transform: translateY(0);
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .nav-link {
+    font-size: 1.15rem;
+    width: 100%;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid var(--border-subtle);
+  }
+}
+
+/* --- Mobile Devices (Phones, max 768px) --- */
+@media (max-width: 768px) {
+  .section {
+    padding: 3.5rem 0;
+  }
+
+  .section-title {
+    font-size: 1.85rem;
+  }
+
+  .hero-title {
+    font-size: 2.4rem;
+  }
+
+  .currency-select {
+    display: none;
+  }
+
+  .search-form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .search-form-grid .search-btn-wrap {
+    grid-column: span 1;
+  }
+
+  .filter-controls-row {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .filter-sliders {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .footer-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+    gap: 1rem;
+    text-align: center;
+  }
+
+  .chatbot-window {
+    width: calc(100vw - 2rem);
+    right: 1rem;
+    left: 1rem;
+    bottom: 5.5rem;
+    height: 480px;
+  }
+
+  .modal-dialog {
+    margin: 1rem;
+    max-height: 95vh;
+  }
+
+  .modal-body {
+    padding: 1.25rem;
+  }
+
+  .modal-header, .modal-footer {
+    padding: 1rem 1.25rem;
+  }
+
+  .itinerary-container {
+    padding: 1.25rem;
+  }
+
+  .timeline-card {
+    flex-direction: column;
+  }
+
+  .hero-floating-card {
+    display: none;
+  }
+}
+
+/* --- Small Mobile (max 480px) --- */
+@media (max-width: 480px) {
+  .hero-title {
+    font-size: 1.95rem;
+  }
+
+  .cards-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .search-tabs {
+    flex-wrap: wrap;
+  }
+
+  .search-tab-btn {
+    padding: 0.5rem 0.9rem;
+    font-size: 0.85rem;
+  }
+
+  .hero-stats {
+    flex-direction: column;
+    gap: 1rem;
+  }
+}
+</style>
+  
+  
+  
+</head>
+<body>
+
+  <div class="admin-layout">
+    <!-- Sidebar -->
+    <aside class="admin-sidebar">
+      <div class="admin-sidebar-header">
+        <div class="brand-logo-icon">✈️</div>
+        <h2>Wander<span>Lust</span> <span style="font-size: 0.75rem; color: var(--accent); font-weight: 800; background: rgba(249, 115, 22, 0.15); padding: 0.2rem 0.5rem; border-radius: var(--radius-full);">ADMIN</span></h2>
+      </div>
+
+      <ul class="admin-sidebar-menu">
+        <li class="admin-nav-item active" data-tab="overview">
+          <a><span>📊</span> Dashboard Overview</a>
+        </li>
+        <li class="admin-nav-item" data-tab="bookings">
+          <a><span>📑</span> Bookings Management</a>
+        </li>
+        <li class="admin-nav-item" data-tab="packages">
+          <a><span>🎒</span> Tour Packages Catalog</a>
+        </li>
+        <li class="admin-nav-item" data-tab="users">
+          <a><span>👥</span> Users & Access Control</a>
+        </li>
+        <li class="admin-nav-item" data-tab="reviews">
+          <a><span>⭐</span> Reviews Moderation</a>
+        </li>
+      </ul>
+
+      <div class="admin-sidebar-footer">
+        <a href="index.html" class="btn btn-secondary btn-block btn-sm" style="display: flex; align-items: center; justify-content: center; gap: 0.5rem;">
+          <span>🌐</span> View Main Website
+        </a>
+      </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="admin-main">
+      <!-- Topbar -->
+      <header class="admin-topbar">
+        <div style="display: flex; align-items: center; gap: 1rem;">
+          <button class="admin-mobile-toggle" id="adminMobileToggle" title="Toggle Menu">☰</button>
+          <h1 class="admin-topbar-title" id="adminTopbarTitle">Dashboard Overview & KPI Analytics</h1>
+        </div>
+
+        <div class="admin-topbar-actions">
+          <!-- Currency Selector -->
+          <select class="currency-select" id="adminCurrencySelect" title="Select Currency">
+            <option value="USD">USD ($)</option>
+            <option value="EUR">EUR (€)</option>
+            <option value="GBP">GBP (£)</option>
+            <option value="INR">INR (₹)</option>
+            <option value="JPY">JPY (¥)</option>
+            <option value="AUD">AUD (A$)</option>
+          </select>
+
+          <!-- Theme Toggle -->
+          <button class="control-btn theme-toggle-btn" title="Toggle Dark/Light Mode">🌙</button>
+
+          <!-- Admin Profile Pill -->
+          <div class="admin-user-pill">
+            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=150&q=80" alt="Admin" />
+            <span>Rahul Raj (Admin)</span>
+          </div>
+        </div>
+      </header>
+
+      <!-- Content Views -->
+      <div class="admin-content">
+
+        <!-- ==================== Tab 1: Overview ==================== -->
+        <div class="admin-tab-pane active" id="adminTab-overview">
+          <!-- KPI Metrics Grid -->
+          <div class="kpi-grid">
+            <div class="kpi-card">
+              <div class="kpi-info">
+                <div class="kpi-label">Total Revenue</div>
+                <div class="kpi-value" id="kpiTotalRevenue">$0</div>
+              </div>
+              <div class="kpi-icon-box green">💰</div>
+            </div>
+
+            <div class="kpi-card">
+              <div class="kpi-info">
+                <div class="kpi-label">Total Bookings</div>
+                <div class="kpi-value" id="kpiTotalBookings">0</div>
+              </div>
+              <div class="kpi-icon-box blue">📑</div>
+            </div>
+
+            <div class="kpi-card">
+              <div class="kpi-info">
+                <div class="kpi-label">Registered Users</div>
+                <div class="kpi-value" id="kpiTotalUsers">0</div>
+              </div>
+              <div class="kpi-icon-box purple">👥</div>
+            </div>
+
+            <div class="kpi-card">
+              <div class="kpi-info">
+                <div class="kpi-label">Active Packages</div>
+                <div class="kpi-value" id="kpiTotalPackages">0</div>
+              </div>
+              <div class="kpi-icon-box orange">🎒</div>
+            </div>
+          </div>
+
+          <!-- Charts Grid -->
+          <div class="charts-grid">
+            <div class="chart-card">
+              <h3>Monthly Booking Revenue (USD)</h3>
+              <div class="chart-container">
+                <canvas id="revenueChartCanvas"></canvas>
+              </div>
+            </div>
+
+            <div class="chart-card">
+              <h3>Booking Category Split</h3>
+              <div class="chart-container">
+                <canvas id="categoryChartCanvas"></canvas>
+              </div>
+            </div>
+          </div>
+
+          <!-- Quick Actions & Recent Bookings Preview -->
+          <div class="table-card">
+            <div class="table-card-header">
+              <h3 style="font-size: 1.1rem; font-weight: 800;">Recent Transactions & Bookings</h3>
+              <button class="btn btn-secondary btn-sm" onclick="adminDashboard.switchTab('bookings')">View All Bookings ➔</button>
+            </div>
+            <div style="padding: 1rem 1.5rem; font-size: 0.9rem; color: var(--text-secondary);">
+              Manage real-time customer reservations, approve pending bookings, or issue instant cancellations across Tours, Hotels, and Flights.
+            </div>
+          </div>
+        </div>
+
+        <!-- ==================== Tab 2: Bookings Management ==================== -->
+        <div class="admin-tab-pane" id="adminTab-bookings">
+          <div class="table-card">
+            <div class="table-card-header">
+              <div style="display: flex; align-items: center; gap: 1rem; flex-wrap: wrap;">
+                <input type="text" id="adminBookingSearch" class="form-control" placeholder="Search by customer name, email, or #ID..." style="width: 280px;" />
+                <select id="adminBookingStatusFilter" class="form-control" style="width: 180px;">
+                  <option value="all">All Statuses</option>
+                  <option value="confirmed">Confirmed</option>
+                  <option value="pending">Pending</option>
+                  <option value="cancelled">Cancelled</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="table-responsive">
+              <table class="admin-table">
+                <thead>
+                  <tr>
+                    <th>Booking ID</th>
+                    <th>Customer</th>
+                    <th>Item & Type</th>
+                    <th>Travel Date</th>
+                    <th>Total Amount</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="adminBookingsTbody">
+                  <!-- Dynamically populated -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- ==================== Tab 3: Tour Packages Management ==================== -->
+        <div class="admin-tab-pane" id="adminTab-packages">
+          <div class="table-card">
+            <div class="table-card-header">
+              <h3 style="font-size: 1.1rem; font-weight: 800;">Tour Packages & Destinations Catalog</h3>
+              <button class="btn btn-primary btn-sm" onclick="adminDashboard.openAddPackageModal()">+ Add New Package</button>
+            </div>
+
+            <div class="table-responsive">
+              <table class="admin-table">
+                <thead>
+                  <tr>
+                    <th>Image</th>
+                    <th>Package Title</th>
+                    <th>Category</th>
+                    <th>Duration</th>
+                    <th>Price</th>
+                    <th>Rating</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="adminPackagesTbody">
+                  <!-- Dynamically populated -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- ==================== Tab 4: Users Management ==================== -->
+        <div class="admin-tab-pane" id="adminTab-users">
+          <div class="table-card">
+            <div class="table-card-header">
+              <h3 style="font-size: 1.1rem; font-weight: 800;">Registered Travelers & System Users</h3>
+            </div>
+
+            <div class="table-responsive">
+              <table class="admin-table">
+                <thead>
+                  <tr>
+                    <th>User Details</th>
+                    <th>Role</th>
+                    <th>Member Since</th>
+                    <th>Account Status</th>
+                    <th>Access Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="adminUsersTbody">
+                  <!-- Dynamically populated -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- ==================== Tab 5: Reviews Moderation ==================== -->
+        <div class="admin-tab-pane" id="adminTab-reviews">
+          <div class="table-card">
+            <div class="table-card-header">
+              <h3 style="font-size: 1.1rem; font-weight: 800;">Customer Reviews & Feedback Moderation</h3>
+            </div>
+
+            <div class="table-responsive">
+              <table class="admin-table">
+                <thead>
+                  <tr>
+                    <th>Author & Date</th>
+                    <th>Destination / Tour</th>
+                    <th>Rating</th>
+                    <th>Comment</th>
+                    <th>Status</th>
+                    <th>Moderation Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="adminReviewsTbody">
+                  <!-- Dynamically populated -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </main>
+  </div>
+
+  <!-- Add Package Modal -->
+  <div class="modal-backdrop" id="adminAddPackageModal">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-header">
+        <h3 class="modal-title">Publish New Tour Package</h3>
+        <button class="modal-close-btn" onclick="adminDashboard.closeAddPackageModal()">✕</button>
+      </div>
+      <div class="modal-body">
+        <form id="adminAddPackageForm">
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+            <div class="form-group">
+              <label>Package Title *</label>
+              <input type="text" id="pkgTitle" class="form-control" required placeholder="e.g. 7-Day Iceland Aurora & Glacier Tour" />
+            </div>
+            <div class="form-group">
+              <label>Destination Location *</label>
+              <input type="text" id="pkgDest" class="form-control" required placeholder="e.g. Reykjavik, Iceland" />
+            </div>
+          </div>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1rem;">
+            <div class="form-group">
+              <label>Category *</label>
+              <select id="pkgCategory" class="form-control">
+                <option value="adventure">Adventure</option>
+                <option value="mountain">Mountain</option>
+                <option value="beach">Beach</option>
+                <option value="cultural">Cultural</option>
+                <option value="romantic">Romantic</option>
+                <option value="city">City</option>
+                <option value="wildlife">Wildlife</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Base Price ($ USD) *</label>
+              <input type="number" id="pkgPrice" class="form-control" required min="50" placeholder="e.g. 899" />
+            </div>
+            <div class="form-group">
+              <label>Duration (Days) *</label>
+              <input type="number" id="pkgDays" class="form-control" required min="1" max="30" placeholder="e.g. 7" />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Image Cover URL</label>
+            <input type="url" id="pkgImage" class="form-control" placeholder="https://images.unsplash.com/..." />
+          </div>
+
+          <div class="form-group">
+            <label>Tour Overview & Summary *</label>
+            <textarea id="pkgOverview" class="form-control" rows="3" required placeholder="Detailed description of the itinerary, key highlights, and traveler experience..."></textarea>
+          </div>
+
+          <button type="submit" class="btn btn-primary btn-block btn-lg">Publish Package ➔</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- JavaScript Modules -->
+  
+  
+  
+  
+<script>// js/data.js - Mock Datasets for WanderLust Travel & Tour Platform
+
+const INITIAL_DESTINATIONS = [
+  {
+    id: "dest-1",
+    name: "Bali, Indonesia",
+    country: "Indonesia",
+    category: "beach",
+    image: "https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=800&q=80",
+    rating: 4.9,
+    reviewsCount: 342,
+    startingPrice: 599,
+    currency: "USD",
+    tag: "Trending",
+    description: "Tropical beaches, lush rice terraces, sacred temples, and vibrant surf spots in the Island of the Gods."
+  },
+  {
+    id: "dest-2",
+    name: "Swiss Alps, Switzerland",
+    country: "Switzerland",
+    category: "mountain",
+    image: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80",
+    rating: 4.95,
+    reviewsCount: 520,
+    startingPrice: 1299,
+    currency: "USD",
+    tag: "Popular",
+    description: "Breathtaking snowy peaks, panoramic alpine trains, turquoise lakes, and world-class skiing resorts."
+  },
+  {
+    id: "dest-3",
+    name: "Kyoto & Tokyo, Japan",
+    country: "Japan",
+    category: "cultural",
+    image: "https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?auto=format&fit=crop&w=800&q=80",
+    rating: 4.88,
+    reviewsCount: 410,
+    startingPrice: 949,
+    currency: "USD",
+    tag: "Cultural",
+    description: "Historic shrines, cherry blossoms, neon-lit tech districts, and Michelin-starred culinary journeys."
+  },
+  {
+    id: "dest-4",
+    name: "Santorini, Greece",
+    country: "Greece",
+    category: "romantic",
+    image: "https://images.unsplash.com/photo-1570077188670-e3a8d69ac5ff?auto=format&fit=crop&w=800&q=80",
+    rating: 4.92,
+    reviewsCount: 680,
+    startingPrice: 849,
+    currency: "USD",
+    tag: "Romantic",
+    description: "Whitewashed cliffside villas, iconic blue domes, cobalt Aegean waters, and world-famous sunsets."
+  },
+  {
+    id: "dest-5",
+    name: "Dubai, United Arab Emirates",
+    country: "UAE",
+    category: "city",
+    image: "https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=800&q=80",
+    rating: 4.85,
+    reviewsCount: 290,
+    startingPrice: 720,
+    currency: "USD",
+    tag: "Luxury",
+    description: "Futuristic skyscrapers, desert safaris, mega shopping paradises, and ultra-luxurious dining."
+  },
+  {
+    id: "dest-6",
+    name: "Costa Rica Rainforest",
+    country: "Costa Rica",
+    category: "adventure",
+    image: "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=800&q=80",
+    rating: 4.89,
+    reviewsCount: 198,
+    startingPrice: 650,
+    currency: "USD",
+    tag: "Adventure",
+    description: "Ziplining through misty cloud forests, volcano hot springs, exotic wildlife, and pristine Pacific coastlines."
+  },
+  {
+    id: "dest-7",
+    name: "Maasai Mara, Kenya",
+    country: "Kenya",
+    category: "wildlife",
+    image: "https://images.unsplash.com/photo-1516426122078-c23e76319801?auto=format&fit=crop&w=800&q=80",
+    rating: 4.97,
+    reviewsCount: 310,
+    startingPrice: 1450,
+    currency: "USD",
+    tag: "Safari",
+    description: "The Great Migration, Big Five wildlife game drives, luxury tented camps, and hot air balloon sunrises."
+  },
+  {
+    id: "dest-8",
+    name: "Amalfi Coast, Italy",
+    country: "Italy",
+    category: "romantic",
+    image: "https://images.unsplash.com/photo-1533105079780-92b9be482077?auto=format&fit=crop&w=800&q=80",
+    rating: 4.91,
+    reviewsCount: 475,
+    startingPrice: 980,
+    currency: "USD",
+    tag: "Scenic",
+    description: "Dramatic Mediterranean coastal cliffs, pastel fishing villages, fragrant lemon groves, and yacht tours."
+  },
+  {
+    id: "dest-9",
+    name: "Goa, India",
+    country: "India",
+    category: "budget",
+    image: "https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?auto=format&fit=crop&w=800&q=80",
+    rating: 4.88,
+    reviewsCount: 620,
+    startingPrice: 120,
+    currency: "USD",
+    tag: "Low Budget (₹10k)",
+    description: "Golden sand beaches, Portuguese colonial forts, vibrant beach shacks, water sports, and sunset boat parties."
+  },
+  {
+    id: "dest-10",
+    name: "Manali & Kasol, India",
+    country: "India",
+    category: "mountain",
+    image: "https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?auto=format&fit=crop&w=800&q=80",
+    rating: 4.93,
+    reviewsCount: 540,
+    startingPrice: 145,
+    currency: "USD",
+    tag: "Budget Trek (₹12k)",
+    description: "Towering snow peaks, riverside alpine cafes in Kasol, Kheerganga hot springs, and thrilling Solang valley adventures."
+  },
+  {
+    id: "dest-11",
+    name: "Rishikesh & Haridwar, India",
+    country: "India",
+    category: "adventure",
+    image: "https://images.unsplash.com/photo-1544735716-392fe2489ffa?auto=format&fit=crop&w=800&q=80",
+    rating: 4.92,
+    reviewsCount: 480,
+    startingPrice: 120,
+    currency: "USD",
+    tag: "Low Budget (₹10k)",
+    description: "The Yoga Capital of the World, exhilarating white-water river rafting, cliff jumping, and spiritual evening Ganga Aarti."
+  },
+  {
+    id: "dest-12",
+    name: "Jaipur & Udaipur, Rajasthan",
+    country: "India",
+    category: "cultural",
+    image: "https://images.unsplash.com/photo-1599661046289-e31897846e41?auto=format&fit=crop&w=800&q=80",
+    rating: 4.94,
+    reviewsCount: 510,
+    startingPrice: 180,
+    currency: "USD",
+    tag: "Royal Budget (₹15k)",
+    description: "Majestic hill forts, romantic Lake Pichola palaces, vibrant colorful bazaars, and traditional Rajasthani folk heritage."
+  },
+  {
+    id: "dest-13",
+    name: "Maldives Luxury Atolls",
+    country: "Maldives",
+    category: "romantic",
+    image: "https://images.unsplash.com/photo-1514282401047-d79a71a590e8?auto=format&fit=crop&w=800&q=80",
+    rating: 4.99,
+    reviewsCount: 890,
+    startingPrice: 3600,
+    currency: "USD",
+    tag: "Ultra Luxury (₹3L-5L)",
+    description: "Private overwater ocean villas, crystal lagoon seaplane transfers, underwater coral dining, and private yacht charters."
+  }
+];
+
+const INITIAL_PACKAGES = [
+  {
+    id: "pkg-1",
+    destinationId: "dest-1",
+    title: "7-Day Bali Tropical Escape & Island Hopping",
+    destination: "Bali & Nusa Penida, Indonesia",
+    category: "beach",
+    durationDays: 7,
+    durationNights: 6,
+    price: 699,
+    originalPrice: 899,
+    discount: "22% OFF",
+    rating: 4.9,
+    reviewsCount: 148,
+    featured: true,
+    groupSize: "2-12 Travelers",
+    image: "https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=1000&q=80",
+    gallery: [
+      "https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1552733407-5d5c46c3bb3b?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1518548419970-58e3b4079ab2?auto=format&fit=crop&w=800&q=80"
+    ],
+    overview: "Immerse yourself in tropical wonderlands, ancient Hindu water temples, cascading jungle waterfalls, and the crystal-blue lagoons of Nusa Penida.",
+    highlights: [
+      "Sunrise trek on Mount Batur with breakfast at summit",
+      "Private speedboat tour to Kelingking Beach & Angel's Billabong",
+      "Ubud Sacred Monkey Forest & Tegalalang Rice Terrace Swing",
+      "Balinese Cooking Class & Traditional Spa Treatment"
+    ],
+    inclusions: [
+      "6 nights in 4-star boutique villas with private pools",
+      "Daily gourmet breakfast and 4 curated dinners",
+      "All airport transfers and private AC vehicle transport",
+      "English-speaking licensed tour guide",
+      "All entrance tickets, speedboat passes, and gear"
+    ],
+    exclusions: [
+      "International airfare",
+      "Personal expenses & souvenir shopping",
+      "Optional scuba diving certification"
+    ],
+    itinerary: [
+      { day: 1, title: "Arrival in Denpasar & Ubud Transfer", desc: "Welcome to Bali! Airport pickup, check-in to your Ubud jungle resort, and evening welcome dinner." },
+      { day: 2, title: "Temples & Rice Terraces", desc: "Explore Tirta Empul Holy Water Temple, stroll through Tegalalang terraces, and take unforgettable photos on the iconic swings." },
+      { day: 3, title: "Mount Batur Sunrise Trek", desc: "Early morning hike up Mount Batur volcano. Enjoy hot steam eggs and hot tea as dawn paints the sky." },
+      { day: 4, title: "Speedboat to Nusa Penida Island", desc: "Ferry to Nusa Penida. Visit Kelingking 'T-Rex' cliff, Broken Beach, and snorkel with manta rays." },
+      { day: 5, title: "Seminyak Beach & Sunset Club", desc: "Transfer to Seminyak. Afternoon chill at famous beach clubs with sunset cocktails and seafood BBQ." },
+      { day: 6, title: "Uluwatu Cliff & Kecak Fire Dance", desc: "Visit cliffside Uluwatu temple perched 70m above crashing waves, followed by the enchanting Kecak fire performance." },
+      { day: 7, title: "Souvenir Shopping & Departure", desc: "Relaxing Balinese flower massage, visit Ubud Art Market, and private airport drop-off." }
+    ]
+  },
+  {
+    id: "pkg-2",
+    destinationId: "dest-2",
+    title: "5-Day Swiss Alps Grand Glacier & Scenic Train Tour",
+    destination: "Interlaken & Zermatt, Switzerland",
+    category: "mountain",
+    durationDays: 5,
+    durationNights: 4,
+    price: 1399,
+    originalPrice: 1650,
+    discount: "15% OFF",
+    rating: 4.96,
+    reviewsCount: 215,
+    featured: true,
+    groupSize: "4-10 Travelers",
+    image: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1000&q=80",
+    gallery: [
+      "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1530122037265-a5f1f91d3b99?auto=format&fit=crop&w=800&q=80"
+    ],
+    overview: "Witness Europe's highest peaks, traverse the Glacier Express route, and gaze upon the majestic Matterhorn with VIP Swiss Travel Passes included.",
+    highlights: [
+      "Panoramic Glacier Express ride with 3-course lunch",
+      "Ascent to Jungfraujoch - The 'Top of Europe' (3,454m)",
+      "Zermatt village exploration with Matterhorn views",
+      "Traditional Swiss fondue tasting in an authentic chalet"
+    ],
+    inclusions: [
+      "4 nights in premium Alpine chalet hotels with breakfast",
+      "First-Class Swiss Travel Pass covering all trains & boats",
+      "Jungfraujoch & Gornergrat mountain railway passes",
+      "Certified Swiss alpine guide for all walking trails"
+    ],
+    exclusions: [
+      "International flights to Zurich/Geneva",
+      "Ski gear rental (if choosing ski add-on)",
+      "Travel insurance"
+    ],
+    itinerary: [
+      { day: 1, title: "Zurich to Lucerne & Lake Cruise", desc: "Arrive in Zurich, take panoramic train to Lucerne, enjoy scenic lake steamer and historic Chapel Bridge." },
+      { day: 2, title: "Interlaken & Jungfraujoch Summit", desc: "Climb by cogwheel train to Jungfraujoch, explore the Ice Palace, and view the massive Aletsch Glacier." },
+      { day: 3, title: "Glacier Express to Zermatt", desc: "Board the world-famous Glacier Express panorama carriage through bridges, valleys, and deep mountain gorges." },
+      { day: 4, title: "Gornergrat & Matterhorn Reflection", desc: "Ride Gornergrat railway for classic views of Matterhorn reflected in Riffelsee alpine lake. Fondue dinner." },
+      { day: 5, title: "Geneva Transfer & Departure", desc: "Scenic descent to Geneva, stroll along Lake Geneva, and airport departure transfer." }
+    ]
+  },
+  {
+    id: "pkg-3",
+    destinationId: "dest-3",
+    title: "8-Day Japan Cherry Blossom & Samurai Heritage",
+    destination: "Tokyo, Kyoto & Osaka, Japan",
+    category: "cultural",
+    durationDays: 8,
+    durationNights: 7,
+    price: 1199,
+    originalPrice: 1450,
+    discount: "18% OFF",
+    rating: 4.91,
+    reviewsCount: 310,
+    featured: true,
+    groupSize: "2-14 Travelers",
+    image: "https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?auto=format&fit=crop&w=1000&q=80",
+    gallery: [
+      "https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1503899036084-c55cdd92da26?auto=format&fit=crop&w=800&q=80"
+    ],
+    overview: "Experience the harmonious blend of cutting-edge technology and ancient traditions across Tokyo, Mount Fuji, Kyoto, and Osaka.",
+    highlights: [
+      "Shinkansen Bullet Train experience at 320 km/h",
+      "Private Tea Ceremony in Kyoto & Geisha district walk",
+      "Mount Fuji 5th Station & Lake Kawaguchi cruise",
+      "Osaka Dotonbori culinary night street food tour"
+    ],
+    inclusions: [
+      "7 nights in 4-star modern hotels & 1 authentic Ryokan with Onsen",
+      "7-Day Japan Rail Pass (Unlimited Bullet Trains)",
+      "Daily breakfast + 3 authentic Kaiseki dinners",
+      "English-speaking licensed Japanese guides"
+    ],
+    exclusions: ["Flight tickets", "Beverages not specified", "Personal shopping"],
+    itinerary: [
+      { day: 1, title: "Arrive in Tokyo & Shinjuku Nightlights", desc: "Tokyo Haneda/Narita pickup. Check-in and evening walk through neon Shibuya crossing and Shinjuku." },
+      { day: 2, title: "Asakusa, Senso-ji & Akihabara", desc: "Visit Tokyo's oldest temple, stroll Nakamise street, and explore the futuristic electronics and anime capital." },
+      { day: 3, title: "Mt. Fuji & Hakone Hot Springs", desc: "Day excursion to iconic Mount Fuji. Ride Hakone ropeway and cruise Lake Ashi with Fuji backdrop." },
+      { day: 4, title: "Bullet Train to Ancient Kyoto", desc: "Zoom to Kyoto on the Shinkansen. Check into traditional Ryokan with soothing thermal onsen baths." },
+      { day: 5, title: "Fushimi Inari & Arashiyama Bamboo", desc: "Walk through 10,000 vermilion Torii gates and walk the mystical soaring Arashiyama bamboo forest." },
+      { day: 6, title: "Kinkaku-ji Golden Pavilion & Gion", desc: "Marvel at Kinkaku-ji temple reflected in mirror pond. Evening Gion lantern walk looking for Geiko." },
+      { day: 7, title: "Osaka Castle & Dotonbori Feast", desc: "Explore Osaka Castle gardens and savor Takoyaki, Okonomiyaki, and Wagyu beef along neon Dotonbori." },
+      { day: 8, title: "Departure from Osaka / Kansai", desc: "Last-minute souvenir shopping in Kansai before your departure transfer." }
+    ]
+  },
+  {
+    id: "pkg-4",
+    destinationId: "dest-4",
+    title: "6-Day Santorini & Mykonos Cycladic Dream Cruise",
+    destination: "Santorini & Mykonos, Greece",
+    category: "romantic",
+    durationDays: 6,
+    durationNights: 5,
+    price: 999,
+    originalPrice: 1250,
+    discount: "20% OFF",
+    rating: 4.94,
+    reviewsCount: 189,
+    featured: false,
+    groupSize: "2-8 Travelers",
+    image: "https://images.unsplash.com/photo-1570077188670-e3a8d69ac5ff?auto=format&fit=crop&w=1000&q=80",
+    gallery: [
+      "https://images.unsplash.com/photo-1570077188670-e3a8d69ac5ff?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1533105079780-92b9be482077?auto=format&fit=crop&w=800&q=80"
+    ],
+    overview: "Sunbathe in luxury atop dramatic volcanic cliffs, cruise turquoise waters aboard a catamaran, and dance through Mykonos old town.",
+    highlights: [
+      "Luxury Sunset Catamaran Cruise in Santorini Caldera",
+      "Wine tasting tour at 3 cliffside Assyrtiko vineyards",
+      "Mykonos Little Venice & iconic Windmills tour",
+      "Private beach day at Red Beach & Perissa Black Sand"
+    ],
+    inclusions: [
+      "5 nights in luxury cliffside suites with caldera views",
+      "Daily breakfast on private sea-view balconies",
+      "High-speed ferry between Santorini & Mykonos",
+      "Catamaran sailing cruise with BBQ & Greek wine"
+    ],
+    exclusions: ["International flights", "Personal expenses"],
+    itinerary: [
+      { day: 1, title: "Arrival in Santorini & Oia Sunset", desc: "Transfer to Oia hotel. Watch the sunset illuminate the caldera with champagne." },
+      { day: 2, title: "Caldera Catamaran Sailing", desc: "Sail past volcanic hot springs, Red Beach, and White Beach. Snorkeling and fresh seafood lunch." },
+      { day: 3, title: "Fira, Pyrgos & Wine Tour", desc: "Discover medieval Pyrgos village and savor 8 volcanic wine varieties at Santo Wines." },
+      { day: 4, title: "Ferry to Mykonos & Little Venice", desc: "Fast ferry to Mykonos. Check-in and evening stroll through cobblestone streets to Little Venice." },
+      { day: 5, title: "Delos Island Ruins & Beach Club", desc: "Morning ferry to sacred archaeological island of Delos. Afternoon beach club experience." },
+      { day: 6, title: "Departure", desc: "Breakfast by the Aegean Sea and airport transfer." }
+    ]
+  },
+  {
+    id: "pkg-5",
+    destinationId: "dest-5",
+    title: "5-Day Dubai Ultra-Luxury Skyline & Desert Safari",
+    destination: "Dubai & Abu Dhabi, UAE",
+    category: "city",
+    durationDays: 5,
+    durationNights: 4,
+    price: 799,
+    originalPrice: 999,
+    discount: "20% OFF",
+    rating: 4.87,
+    reviewsCount: 165,
+    featured: false,
+    groupSize: "2-15 Travelers",
+    image: "https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=1000&q=80",
+    gallery: [
+      "https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=800&q=80"
+    ],
+    overview: "Discover the architectural wonders, gold souks, futuristic museums, and luxury desert glamping in the United Arab Emirates.",
+    highlights: [
+      "Burj Khalifa 148th Floor 'At The Top SKY' VIP entry",
+      "Red Dune 4x4 Desert Safari with Falconry & BBQ Show",
+      "Abu Dhabi Sheikh Zayed Grand Mosque & Louvre tour",
+      "Dubai Marina Luxury Yacht cruise with buffet"
+    ],
+    inclusions: [
+      "4 nights in 5-star Dubai Marina luxury hotel",
+      "Daily buffet breakfast & VIP Desert BBQ banquet",
+      "Private luxury AC transport for all excursions",
+      "All VIP fast-track monument tickets"
+    ],
+    exclusions: ["Flight tickets", "Tourism Dirham hotel fee", "Personal expenses"],
+    itinerary: [
+      { day: 1, title: "Arrive in Dubai & Marina Dhow Cruise", desc: "Luxury airport pickup, check-in, and evening 2-hour Marina dinner cruise." },
+      { day: 2, title: "Burj Khalifa, Dubai Mall & Fountain Show", desc: "Ascend the world's tallest tower, explore Dubai Aquarium, and watch choreographed fountains." },
+      { day: 3, title: "Red Dune Desert Safari & Bedouin Camp", desc: "Thrilling dune bashing, sandboarding, camel rides, tanoura dance, and open-air BBQ." },
+      { day: 4, title: "Abu Dhabi Grand Mosque & Louvre", desc: "Day trip to Abu Dhabi to visit the Grand Mosque and world-class Louvre Abu Dhabi." },
+      { day: 5, title: "Old Dubai Souks & Departure", desc: "Cross Dubai Creek on an Abra boat, shop Gold & Spice Souks, and head to DXB airport." }
+    ]
+  },
+  {
+    id: "pkg-6",
+    destinationId: "dest-6",
+    title: "6-Day Costa Rica Volcano, Cloud Forest & Rafting",
+    destination: "Arenal & Monteverde, Costa Rica",
+    category: "adventure",
+    durationDays: 6,
+    durationNights: 5,
+    price: 849,
+    originalPrice: 1050,
+    discount: "19% OFF",
+    rating: 4.93,
+    reviewsCount: 142,
+    featured: false,
+    groupSize: "2-10 Travelers",
+    image: "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=1000&q=80",
+    gallery: [
+      "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=800&q=80"
+    ],
+    overview: "Pure Pura Vida adventure! Hike active volcano trails, soak in thermal river springs, and zip-line through Monteverde canopy.",
+    highlights: [
+      "Ziplining over canopy with Superman wire & Tarzan swing",
+      "Arenal Volcano hike & Tabacón Natural Hot Springs",
+      "Class III-IV Pacuare River White Water Rafting",
+      "Night jungle safari searching for red-eyed tree frogs & sloths"
+    ],
+    inclusions: [
+      "5 nights in eco-lodges with volcano & rainforest views",
+      "All adventure gear, safety equipment, and certified guides",
+      "Daily farm-to-table breakfast and 3 adventure lunches",
+      "Private group transportation across all regions"
+    ],
+    exclusions: ["International flights", "Gratuities for river guides"],
+    itinerary: [
+      { day: 1, title: "Arrive in San Jose & Arenal Transfer", desc: "Scenic drive through pineapple and coffee plantations to Arenal Volcano." },
+      { day: 2, title: "Volcano Trails & Tabacón Hot Springs", desc: "Hike over 1968 lava flow fields, followed by soothing baths in natural geothermal hot springs." },
+      { day: 3, title: "Lake Arenal Boat & Monteverde Cloud Forest", desc: "Cross Lake Arenal by boat and climb into the misty cloud forest of Monteverde." },
+      { day: 4, title: "Canopy Zipline & Hanging Bridges", desc: "Fly through the clouds on 2.5km of ziplines and walk high suspension bridges." },
+      { day: 5, title: "White Water Rafting Expedition", desc: "Conquer exhilarating class III & IV rapids through canyon gorges and waterfalls." },
+      { day: 6, title: "Manuel Antonio Beach & Departure", desc: "Relax on Manuel Antonio's white sand beaches before return flight." }
+    ]
+  },
+  {
+    id: "pkg-7",
+    destinationId: "dest-9",
+    title: "4-Day Goa Beach & Heritage Backpacking (Low Budget)",
+    destination: "North & South Goa, India",
+    category: "budget",
+    durationDays: 4,
+    durationNights: 3,
+    price: 120,
+    originalPrice: 160,
+    discount: "25% OFF",
+    rating: 4.88,
+    reviewsCount: 230,
+    featured: true,
+    groupSize: "2-10 Travelers",
+    image: "https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?auto=format&fit=crop&w=1000&q=80",
+    gallery: [
+      "https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?auto=format&fit=crop&w=800&q=80"
+    ],
+    overview: "Incredible value budget getaway! Explore Vagator & Anjuna cliffs, Portuguese churches of Old Goa, and Mandovi river sunset cruises.",
+    highlights: [
+      "Mandovi River Sunset Cruise with Goan folk music",
+      "Aguada Fort & Chapora 'Dil Chahta Hai' Fort exploration",
+      "Anjuna flea market & beach shack seafood dinner",
+      "Dudhsagar Waterfall Jeep safari trek"
+    ],
+    inclusions: [
+      "3 nights in cozy boutique beachside hostel / hotel",
+      "Daily breakfast included",
+      "Scooter / vehicle transport allowance",
+      "Sunset boat cruise tickets"
+    ],
+    exclusions: ["Personal bar bills & water sports"],
+    itinerary: [
+      { day: 1, title: "Arrival in Goa & Anjuna Sunset", desc: "Check-in to beach hotel, evening chill at Curlies Anjuna beach shack with live acoustic music." },
+      { day: 2, title: "Forts & Watersports in North Goa", desc: "Visit Aguada Fort, lighthouse, and enjoy jet ski and parasailing at Calangute." },
+      { day: 3, title: "Old Goa Heritage & Mandovi Cruise", desc: "Explore Basilica of Bom Jesus and board the 2-hour sunset cruise on Mandovi River." },
+      { day: 4, title: "South Goa & Departure", desc: "Relax on Palolem beach before heading to airport/railway station." }
+    ]
+  },
+  {
+    id: "pkg-8",
+    destinationId: "dest-10",
+    title: "5-Day Manali & Kasol Parvati Valley Alpine Trek",
+    destination: "Himachal Pradesh, India",
+    category: "mountain",
+    durationDays: 5,
+    durationNights: 4,
+    price: 145,
+    originalPrice: 190,
+    discount: "24% OFF",
+    rating: 4.94,
+    reviewsCount: 312,
+    featured: true,
+    groupSize: "4-12 Travelers",
+    image: "https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?auto=format&fit=crop&w=1000&q=80",
+    gallery: [
+      "https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?auto=format&fit=crop&w=800&q=80"
+    ],
+    overview: "Crisp mountain air, riverside cafes in Kasol, natural thermal springs in Kheerganga, and snow thrills in Solang Valley.",
+    highlights: [
+      "Kheerganga Himalayan trek with natural hot water springs bath",
+      "Riverside luxury Swiss tent camping in Kasol with bonfire",
+      "Solang Valley snow activities & Atal Tunnel drive",
+      "Old Manali hippie cafes & Hadimba Temple walk"
+    ],
+    inclusions: [
+      "4 nights (2 nights hotel + 2 nights mountain camps)",
+      "Daily breakfast and warm camp dinners",
+      "Delhi to Manali AC Volvo transfers",
+      "Certified Himalayan trek leader & safety equipment"
+    ],
+    exclusions: ["Personal gear rental"],
+    itinerary: [
+      { day: 1, title: "Arrival in Manali & Old Manali Stroll", desc: "Check-in to pine view cottage, visit Hadimba Temple and cozy woodfire pizza cafes in Old Manali." },
+      { day: 2, title: "Solang Valley & Atal Tunnel", desc: "Experience snow adventures, zip-lining, and cross the engineering marvel of Atal Tunnel." },
+      { day: 3, title: "Kasol Parvati River & Manikaran", desc: "Transfer to Kasol. Walk along crystal Parvati river and taste authentic Israeli food." },
+      { day: 4, title: "Kheerganga Trek & Night Camp", desc: "Trek through waterfalls and pine forests to Kheerganga summit. Night bonfire under stargazing skies." },
+      { day: 5, title: "Descent to Kasol & Return", desc: "Morning hot spring dip, leisurely descent, and return Volvo transfer." }
+    ]
+  },
+  {
+    id: "pkg-9",
+    destinationId: "dest-11",
+    title: "3-Day Rishikesh White Water Rafting & Ganga Camp",
+    destination: "Rishikesh, Uttarakhand, India",
+    category: "adventure",
+    durationDays: 3,
+    durationNights: 2,
+    price: 120,
+    originalPrice: 150,
+    discount: "20% OFF",
+    rating: 4.92,
+    reviewsCount: 198,
+    featured: false,
+    groupSize: "2-12 Travelers",
+    image: "https://images.unsplash.com/photo-1544735716-392fe2489ffa?auto=format&fit=crop&w=1000&q=80",
+    gallery: [
+      "https://images.unsplash.com/photo-1544735716-392fe2489ffa?auto=format&fit=crop&w=800&q=80"
+    ],
+    overview: "Conquer grade III+ rapids on the sacred Ganges, jump off 30ft cliffs, and enjoy riverside music and barbecue under the stars.",
+    highlights: [
+      "16km exhilarating Marine Drive to Shivpuri river rafting",
+      "Cliff jumping and body surfing under expert guidance",
+      "Riverside Swiss camp stay with swimming pool and volleyball",
+      "Spiritual Triveni Ghat Ganga Aarti at sunset"
+    ],
+    inclusions: [
+      "2 nights in riverside luxury alpine camps",
+      "All meals: 2 Breakfasts, 2 Lunches, 2 Dinners + Evening Snacks",
+      "16km river rafting expedition with full safety gear",
+      "Campfire with acoustic music"
+    ],
+    exclusions: ["Bungee jumping ticket (optional add-on)"],
+    itinerary: [
+      { day: 1, title: "Camp Check-in & Triveni Ghat Aarti", desc: "Arrival at riverside camp. Evening trip to Triveni Ghat for magical flame Aarti ceremony." },
+      { day: 2, title: "16km Ganga Rafting & Cliff Jump", desc: "Battle Roller Coaster & Golf Course rapids. Cliff jumping into emerald waters. Evening barbecue." },
+      { day: 3, title: "Beatles Ashram & Departure", desc: "Morning yoga session by the river, visit famous Beatles Ashram, and departure." }
+    ]
+  },
+  {
+    id: "pkg-10",
+    destinationId: "dest-13",
+    title: "7-Day Maldives Ultra-Luxury Overwater Ocean Villa",
+    destination: "Baa Atoll, Maldives",
+    category: "romantic",
+    durationDays: 7,
+    durationNights: 6,
+    price: 3600,
+    originalPrice: 4200,
+    discount: "14% OFF",
+    rating: 4.99,
+    reviewsCount: 420,
+    featured: true,
+    groupSize: "2 Travelers (Couples / VIP)",
+    image: "https://images.unsplash.com/photo-1514282401047-d79a71a590e8?auto=format&fit=crop&w=1000&q=80",
+    gallery: [
+      "https://images.unsplash.com/photo-1514282401047-d79a71a590e8?auto=format&fit=crop&w=800&q=80"
+    ],
+    overview: "The pinnacle of tropical indulgence. Stay in an ultra-luxurious private pool villa perched over crystal turquoise coral lagoons.",
+    highlights: [
+      "Seaplane transfers with aerial coral atoll views",
+      "Private champagne sunset cruise with wild dolphin watching",
+      "Underwater 5-course gourmet dining experience",
+      "Floating breakfast in your private villa infinity pool"
+    ],
+    inclusions: [
+      "6 nights in 5-star Deluxe Sunset Overwater Pool Villa",
+      "All-Inclusive Dine Around: 6 restaurants & premium beverages",
+      "Roundtrip seaplane transfers from Male airport",
+      "Couples overwater Ayurvedic spa massage"
+    ],
+    exclusions: ["International airfare"],
+    itinerary: [
+      { day: 1, title: "Seaplane Arrival & Overwater Check-in", desc: "Scenic seaplane landing right at resort jetty. Welcome Dom Pérignon and villa tour." },
+      { day: 2, title: "Snorkeling Safari & Manta Rays", desc: "Snorkel in Hanifaru Bay UNESCO biosphere reserve among gentle manta rays." },
+      { day: 3, title: "Underwater Restaurant Dining", desc: "Dine 6 meters below ocean surface watching tropical marine life glide past your table." },
+      { day: 4, title: "Private Yacht & Sunset Dolphins", desc: "Charter luxury yacht for private sandbank picnic and sunset dolphin cruise." },
+      { day: 5, title: "Floating Breakfast & Spa Day", desc: "Wake up to floating breakfast in your pool followed by soothing overwater massage." },
+      { day: 6, title: "Starlit Beach Cinema & Candlelight Dinner", desc: "Private gourmet dinner on private beach beneath blanket of stars." },
+      { day: 7, title: "Seaplane Return Transfer", desc: "Final morning lagoon swim before seaplane transfer back to Male." }
+    ]
+  }
+];
+
+const INITIAL_HOTELS = [
+  {
+    id: "hotel-1",
+    name: "The Royal Pita Maha Resort",
+    city: "Bali",
+    country: "Indonesia",
+    image: "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=800&q=80",
+    rating: 4.9,
+    reviewsCount: 420,
+    pricePerNight: 240,
+    stars: 5,
+    amenities: ["Free WiFi", "Infinity Pool", "Ayurvedic Spa", "Breakfast Included", "Private River Villa", "Yoga Deck"],
+    roomTypes: [
+      { name: "Deluxe Pool Villa", price: 240, maxGuests: 2, bed: "1 King Bed" },
+      { name: "Royal Sanctuary Suite", price: 380, maxGuests: 3, bed: "1 King Bed + 1 Sofa" },
+      { name: "Presidential 2-Bedroom Villa", price: 620, maxGuests: 5, bed: "2 King Beds" }
+    ],
+    description: "Nestled along the sacred Ayung River in Ubud, offering dramatic canyon views and Balinese art architecture."
+  },
+  {
+    id: "hotel-2",
+    name: "Grand Hotel Zermatterhof",
+    city: "Zermatt",
+    country: "Switzerland",
+    image: "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=800&q=80",
+    rating: 4.95,
+    reviewsCount: 310,
+    pricePerNight: 450,
+    stars: 5,
+    amenities: ["Matterhorn View", "Alpine Spa & Sauna", "Michelin Dining", "Ski Valet", "Horse-drawn Carriage Transfer", "Free WiFi"],
+    roomTypes: [
+      { name: "Classic Alpine Room", price: 450, maxGuests: 2, bed: "1 Queen Bed" },
+      { name: "Matterhorn View Chalet Suite", price: 690, maxGuests: 3, bed: "1 King Bed" },
+      { name: "Penthouse Panoramic Suite", price: 1100, maxGuests: 4, bed: "2 King Beds" }
+    ],
+    description: "Historic luxury in the heart of car-free Zermatt with unobstructed panoramic vistas of the Matterhorn."
+  },
+  {
+    id: "hotel-3",
+    name: "Hoshinoya Kyoto Luxury Ryokan",
+    city: "Kyoto",
+    country: "Japan",
+    image: "https://images.unsplash.com/photo-1503899036084-c55cdd92da26?auto=format&fit=crop&w=800&q=80",
+    rating: 4.92,
+    reviewsCount: 280,
+    pricePerNight: 390,
+    stars: 5,
+    amenities: ["Private Boat Arrival", "Traditional Onsen Bath", "Kaiseki Breakfast", "Tatami Rooms", "Zen Garden", "Tea Pavilion"],
+    roomTypes: [
+      { name: "Tsukihana Riverside Room", price: 390, maxGuests: 2, bed: "2 Futon Beds" },
+      { name: "Yamanoha Maple View Suite", price: 560, maxGuests: 3, bed: "King Tatami Bed" }
+    ],
+    description: "An aristocratic riverside retreat reached by wooden boat along the Oi River amidst maple forests."
+  },
+  {
+    id: "hotel-4",
+    name: "Canaves Oia Suites",
+    city: "Santorini",
+    country: "Greece",
+    image: "https://images.unsplash.com/photo-1570077188670-e3a8d69ac5ff?auto=format&fit=crop&w=800&q=80",
+    rating: 4.98,
+    reviewsCount: 512,
+    pricePerNight: 420,
+    stars: 5,
+    amenities: ["Cave Pool with Caldera View", "Gourmet Breakfast on Balcony", "Sunset Bar", "Concierge Yacht", "Spa", "Free WiFi"],
+    roomTypes: [
+      { name: "Junior Cave Suite", price: 420, maxGuests: 2, bed: "1 King Bed" },
+      { name: "Superior Caldera Suite with Plunge Pool", price: 650, maxGuests: 2, bed: "1 King Bed" },
+      { name: "Infinity Pool Villa", price: 980, maxGuests: 4, bed: "2 King Beds" }
+    ],
+    description: "17th-century cave architecture carved into volcanic cliffs, offering the world's most romantic caldera views."
+  },
+  {
+    id: "hotel-5",
+    name: "Atlantis The Royal Resort",
+    city: "Dubai",
+    country: "UAE",
+    image: "https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=800&q=80",
+    rating: 4.89,
+    reviewsCount: 650,
+    pricePerNight: 510,
+    stars: 5,
+    amenities: ["Cloud 22 Sky Pool", "Private Beach", "Waterpark Access", "17 Restaurants", "Helipad", "Luxury Spa"],
+    roomTypes: [
+      { name: "Seascape King Room", price: 510, maxGuests: 2, bed: "1 King Bed" },
+      { name: "Palm View Sky Suite", price: 820, maxGuests: 3, bed: "1 King Bed + Lounge" },
+      { name: "Sky Pool Villa", price: 1750, maxGuests: 4, bed: "2 King Beds" }
+    ],
+    description: "An ultra-luxury architectural marvel on the Palm Jumeirah redefining modern luxury."
+  }
+];
+
+const INITIAL_FLIGHTS = [
+  {
+    id: "flt-1",
+    airline: "Emirates",
+    airlineCode: "EK-358",
+    logo: "✈️",
+    origin: "New York (JFK)",
+    originCity: "New York",
+    destination: "Dubai (DXB)",
+    destinationCity: "Dubai",
+    departureTime: "22:20",
+    arrivalTime: "19:30 (+1)",
+    duration: "13h 10m",
+    stops: "Non-stop",
+    classes: [
+      { name: "Economy", price: 680, baggage: "2 x 23kg", seatPitch: "32 in" },
+      { name: "Business", price: 2450, baggage: "2 x 32kg", seatPitch: "Lie-Flat" },
+      { name: "First Class", price: 5800, baggage: "3 x 32kg", seatPitch: "Private Suite" }
+    ]
+  },
+  {
+    id: "flt-2",
+    airline: "Singapore Airlines",
+    airlineCode: "SQ-942",
+    logo: "✈️",
+    origin: "London (LHR)",
+    originCity: "London",
+    destination: "Bali (DPS)",
+    destinationCity: "Bali",
+    departureTime: "11:25",
+    arrivalTime: "12:10 (+1)",
+    duration: "16h 45m",
+    stops: "1 Stop (SIN)",
+    classes: [
+      { name: "Economy", price: 740, baggage: "2 x 23kg", seatPitch: "32 in" },
+      { name: "Premium Economy", price: 1290, baggage: "2 x 23kg", seatPitch: "38 in" },
+      { name: "Business", price: 2890, baggage: "2 x 32kg", seatPitch: "Lie-Flat" }
+    ]
+  },
+  {
+    id: "flt-3",
+    airline: "Swiss International",
+    airlineCode: "LX-18",
+    logo: "✈️",
+    origin: "San Francisco (SFO)",
+    originCity: "San Francisco",
+    destination: "Zurich (ZRH)",
+    destinationCity: "Zurich",
+    departureTime: "19:45",
+    arrivalTime: "15:40 (+1)",
+    duration: "10h 55m",
+    stops: "Non-stop",
+    classes: [
+      { name: "Economy", price: 810, baggage: "1 x 23kg", seatPitch: "31 in" },
+      { name: "Business", price: 2750, baggage: "2 x 32kg", seatPitch: "Lie-Flat" }
+    ]
+  },
+  {
+    id: "flt-4",
+    airline: "Qatar Airways",
+    airlineCode: "QR-802",
+    logo: "✈️",
+    origin: "Paris (CDG)",
+    originCity: "Paris",
+    destination: "Tokyo (NRT)",
+    destinationCity: "Tokyo",
+    departureTime: "15:10",
+    arrivalTime: "17:55 (+1)",
+    duration: "17h 45m",
+    stops: "1 Stop (DOH)",
+    classes: [
+      { name: "Economy", price: 780, baggage: "2 x 23kg", seatPitch: "32 in" },
+      { name: "QSuite Business", price: 3100, baggage: "2 x 32kg", seatPitch: "Private Suite" }
+    ]
+  }
+];
+
+const INITIAL_GALLERY = [
+  {
+    id: "gal-1",
+    title: "Sunrise at Mount Batur",
+    location: "Bali, Indonesia",
+    category: "nature",
+    image: "https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=1200&q=80",
+    photographer: "Alexandre Chambon",
+    likes: 428
+  },
+  {
+    id: "gal-2",
+    title: "Matterhorn Peak in Summer",
+    location: "Zermatt, Switzerland",
+    category: "mountains",
+    image: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1200&q=80",
+    photographer: "Lucas Favre",
+    likes: 615
+  },
+  {
+    id: "gal-3",
+    title: "Fushimi Inari Torii Shrine",
+    location: "Kyoto, Japan",
+    category: "culture",
+    image: "https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?auto=format&fit=crop&w=1200&q=80",
+    photographer: "Su San Lee",
+    likes: 589
+  },
+  {
+    id: "gal-4",
+    title: "Oia Sunset & Blue Domes",
+    location: "Santorini, Greece",
+    category: "beaches",
+    image: "https://images.unsplash.com/photo-1570077188670-e3a8d69ac5ff?auto=format&fit=crop&w=1200&q=80",
+    photographer: "Heidi Kaden",
+    likes: 830
+  },
+  {
+    id: "gal-5",
+    title: "Futuristic Burj Khalifa Lights",
+    location: "Dubai, UAE",
+    category: "cities",
+    image: "https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=1200&q=80",
+    photographer: "Zheng Zhou",
+    likes: 390
+  },
+  {
+    id: "gal-6",
+    title: "Misty Arenal Cloud Forest",
+    location: "Arenal, Costa Rica",
+    category: "nature",
+    image: "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=1200&q=80",
+    photographer: "Javier Trueba",
+    likes: 312
+  },
+  {
+    id: "gal-7",
+    title: "Shibuya Crossing at Dusk",
+    location: "Tokyo, Japan",
+    category: "cities",
+    image: "https://images.unsplash.com/photo-1503899036084-c55cdd92da26?auto=format&fit=crop&w=1200&q=80",
+    photographer: "Jezael Melgoza",
+    likes: 742
+  },
+  {
+    id: "gal-8",
+    title: "Positano Cliffside Beauty",
+    location: "Amalfi Coast, Italy",
+    category: "beaches",
+    image: "https://images.unsplash.com/photo-1533105079780-92b9be482077?auto=format&fit=crop&w=1200&q=80",
+    photographer: "Ricardo Gomez Angel",
+    likes: 671
+  }
+];
+
+const INITIAL_REVIEWS = [
+  {
+    id: "rev-1",
+    author: "Elena Rostova",
+    avatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=120&q=80",
+    destination: "Bali Tropical Escape Tour",
+    rating: 5,
+    date: "August 18, 2026",
+    comment: "The 7-day Bali trip was the most seamless, breathtaking vacation of my life. The villa in Ubud was sheer luxury, and our guide made us feel like family. Snorkeling with manta rays in Nusa Penida is a memory I will cherish forever!",
+    likes: 47,
+    status: "approved"
+  },
+  {
+    id: "rev-2",
+    author: "Marcus Vance",
+    avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=120&q=80",
+    destination: "Swiss Alps Grand Glacier Tour",
+    rating: 5,
+    date: "July 29, 2026",
+    comment: "WanderLust arranged everything down to the minute. First-class Swiss rail passes and the Glacier Express meal were world class. The Matterhorn view from our hotel room took our breath away.",
+    likes: 38,
+    status: "approved"
+  },
+  {
+    id: "rev-3",
+    author: "Sophie Chen",
+    avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=120&q=80",
+    destination: "Japan Heritage & Bullet Train Tour",
+    rating: 5,
+    date: "June 14, 2026",
+    comment: "From the traditional tea ceremony in Kyoto to the neon buzz of Shinjuku, every single day was packed with authentic Japanese culture. Will definitely book my next travel through WanderLust!",
+    likes: 52,
+    status: "approved"
+  }
+];
+
+const INITIAL_BOOKINGS = [
+  {
+    id: "BK-9021",
+    type: "tour",
+    itemTitle: "7-Day Bali Tropical Escape & Island Hopping",
+    customerName: "Elena Rostova",
+    customerEmail: "elena@example.com",
+    customerPhone: "+1 (555) 234-5678",
+    date: "2026-09-15",
+    travelers: 2,
+    totalAmount: 1398,
+    status: "Confirmed",
+    paymentMethod: "Credit Card (Visa ending in 4242)",
+    bookingDate: "2026-08-10",
+    specialRequests: "Vegetarian meals preferred"
+  },
+  {
+    id: "BK-9022",
+    type: "hotel",
+    itemTitle: "Grand Hotel Zermatterhof (Matterhorn View Suite)",
+    customerName: "Marcus Vance",
+    customerEmail: "marcus.v@example.com",
+    customerPhone: "+1 (555) 987-6543",
+    date: "2026-10-02 to 2026-10-06",
+    travelers: 2,
+    totalAmount: 1800,
+    status: "Confirmed",
+    paymentMethod: "PayPal",
+    bookingDate: "2026-08-12",
+    specialRequests: "High floor requested"
+  },
+  {
+    id: "BK-9023",
+    type: "flight",
+    itemTitle: "Emirates (EK-358) - JFK to DXB",
+    customerName: "David Miller",
+    customerEmail: "david.m@example.com",
+    customerPhone: "+44 7700 900123",
+    date: "2026-09-20",
+    travelers: 1,
+    totalAmount: 680,
+    status: "Pending",
+    paymentMethod: "Apple Pay",
+    bookingDate: "2026-08-25",
+    specialRequests: "Window seat"
+  }
+];
+
+const INITIAL_USERS = [
+  {
+    id: "usr-admin",
+    name: "Rahul Raj (Admin)",
+    email: "rahul.raj@wanderlust.com",
+    password: "admin",
+    role: "Admin",
+    avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=150&q=80",
+    joinedDate: "2025-01-10",
+    status: "Active"
+  },
+  {
+    id: "usr-1",
+    name: "John Traveler",
+    email: "john@traveler.com",
+    password: "user123",
+    role: "User",
+    avatar: "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=120&q=80",
+    joinedDate: "2026-03-12",
+    status: "Active"
+  },
+  {
+    id: "usr-2",
+    name: "Elena Rostova",
+    email: "elena@example.com",
+    password: "password",
+    role: "User",
+    avatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=120&q=80",
+    joinedDate: "2026-05-20",
+    status: "Active"
+  }
+];
+
+// js/store.js - Central State Management with LocalStorage
+
+const STORE_KEYS = {
+  DESTINATIONS: "wanderlust_destinations",
+  PACKAGES: "wanderlust_packages",
+  HOTELS: "wanderlust_hotels",
+  FLIGHTS: "wanderlust_flights",
+  GALLERY: "wanderlust_gallery",
+  REVIEWS: "wanderlust_reviews",
+  BOOKINGS: "wanderlust_bookings",
+  USERS: "wanderlust_users",
+  CURRENT_USER: "wanderlust_current_user",
+  CURRENCY: "wanderlust_currency",
+  THEME: "wanderlust_theme",
+  WISHLIST: "wanderlust_wishlist",
+  CUSTOM_ITINERARY: "wanderlust_custom_itinerary"
+};
+
+const CURRENCY_RATES = {
+  USD: { symbol: "$", rate: 1, name: "USD ($)" },
+  EUR: { symbol: "€", rate: 0.92, name: "EUR (€)" },
+  GBP: { symbol: "£", rate: 0.79, name: "GBP (£)" },
+  INR: { symbol: "₹", rate: 83.5, name: "INR (₹)" },
+  JPY: { symbol: "¥", rate: 155.0, name: "JPY (¥)" },
+  AUD: { symbol: "A$", rate: 1.52, name: "AUD (A$)" }
+};
+
+class TravelStore {
+  constructor() {
+    this.init();
+  }
+
+  init() {
+    // Initialize datasets in LocalStorage and sync new items
+    try {
+      let storedDest = JSON.parse(localStorage.getItem(STORE_KEYS.DESTINATIONS) || "[]");
+      if (!storedDest.length || storedDest.length < INITIAL_DESTINATIONS.length) {
+        localStorage.setItem(STORE_KEYS.DESTINATIONS, JSON.stringify(INITIAL_DESTINATIONS));
+      } else {
+        // Sync any updated image URLs
+        storedDest = storedDest.map(d => {
+          const fresh = INITIAL_DESTINATIONS.find(item => item.id === d.id);
+          return fresh ? { ...d, image: fresh.image, tag: fresh.tag } : d;
+        });
+        localStorage.setItem(STORE_KEYS.DESTINATIONS, JSON.stringify(storedDest));
+      }
+    } catch(e) {
+      localStorage.setItem(STORE_KEYS.DESTINATIONS, JSON.stringify(INITIAL_DESTINATIONS));
+    }
+
+    try {
+      let storedPkgs = JSON.parse(localStorage.getItem(STORE_KEYS.PACKAGES) || "[]");
+      if (!storedPkgs.length || storedPkgs.length < INITIAL_PACKAGES.length) {
+        localStorage.setItem(STORE_KEYS.PACKAGES, JSON.stringify(INITIAL_PACKAGES));
+      } else {
+        // Sync any updated image URLs and discount badges
+        storedPkgs = storedPkgs.map(p => {
+          const fresh = INITIAL_PACKAGES.find(item => item.id === p.id);
+          return fresh ? { ...p, image: fresh.image, discount: fresh.discount } : p;
+        });
+        localStorage.setItem(STORE_KEYS.PACKAGES, JSON.stringify(storedPkgs));
+      }
+    } catch(e) {
+      localStorage.setItem(STORE_KEYS.PACKAGES, JSON.stringify(INITIAL_PACKAGES));
+    }
+    if (!localStorage.getItem(STORE_KEYS.HOTELS)) {
+      localStorage.setItem(STORE_KEYS.HOTELS, JSON.stringify(INITIAL_HOTELS));
+    }
+    if (!localStorage.getItem(STORE_KEYS.FLIGHTS)) {
+      localStorage.setItem(STORE_KEYS.FLIGHTS, JSON.stringify(INITIAL_FLIGHTS));
+    }
+    if (!localStorage.getItem(STORE_KEYS.GALLERY)) {
+      localStorage.setItem(STORE_KEYS.GALLERY, JSON.stringify(INITIAL_GALLERY));
+    }
+    if (!localStorage.getItem(STORE_KEYS.REVIEWS)) {
+      localStorage.setItem(STORE_KEYS.REVIEWS, JSON.stringify(INITIAL_REVIEWS));
+    }
+    if (!localStorage.getItem(STORE_KEYS.BOOKINGS)) {
+      localStorage.setItem(STORE_KEYS.BOOKINGS, JSON.stringify(INITIAL_BOOKINGS));
+    }
+    if (!localStorage.getItem(STORE_KEYS.USERS)) {
+      localStorage.setItem(STORE_KEYS.USERS, JSON.stringify(INITIAL_USERS));
+    } else {
+      // Sync admin user name, email, and avatar if updated
+      try {
+        const existingUsers = JSON.parse(localStorage.getItem(STORE_KEYS.USERS) || "[]");
+        const adminIndex = existingUsers.findIndex(u => u.id === "usr-admin" || u.role === "Admin");
+        if (adminIndex !== -1) {
+          existingUsers[adminIndex].name = "Rahul Raj (Admin)";
+          existingUsers[adminIndex].email = "rahul.raj@wanderlust.com";
+          existingUsers[adminIndex].avatar = "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=150&q=80";
+          localStorage.setItem(STORE_KEYS.USERS, JSON.stringify(existingUsers));
+        }
+      } catch (e) {}
+    }
+    if (!localStorage.getItem(STORE_KEYS.CURRENCY)) {
+      localStorage.setItem(STORE_KEYS.CURRENCY, "USD");
+    }
+    if (!localStorage.getItem(STORE_KEYS.THEME)) {
+      localStorage.setItem(STORE_KEYS.THEME, "light");
+    }
+    if (!localStorage.getItem(STORE_KEYS.WISHLIST)) {
+      localStorage.setItem(STORE_KEYS.WISHLIST, JSON.stringify(["dest-1", "pkg-2"]));
+    }
+    if (!localStorage.getItem(STORE_KEYS.CUSTOM_ITINERARY)) {
+      const defaultCustomPlan = [
+        {
+          day: 1,
+          date: "Day 1",
+          city: "Tokyo, Japan",
+          activities: [
+            { id: "act-1", time: "09:00 AM", title: "Arrival & Hotel Check-in", location: "Shinjuku Granbell", cost: 0, notes: "Collect pocket Wi-Fi at Narita" },
+            { id: "act-2", time: "02:00 PM", title: "Meiji Jingu Shrine Walk", location: "Harajuku", cost: 0, notes: "Quiet stroll under giant cedar trees" },
+            { id: "act-3", time: "07:30 PM", title: "Shinjuku Omoide Yokocho Yakitori", location: "Memory Lane", cost: 35, notes: "Authentic skewers and local vibe" }
+          ]
+        },
+        {
+          day: 2,
+          date: "Day 2",
+          city: "Tokyo, Japan",
+          activities: [
+            { id: "act-4", time: "09:30 AM", title: "Senso-ji Temple & Nakamise Dori", location: "Asakusa", cost: 15, notes: "Try fresh melonpan and green tea" },
+            { id: "act-5", time: "03:00 PM", title: "TeamLab Planets Immersive Art", location: "Toyosu", cost: 38, notes: "Advance reservation booked" },
+            { id: "act-6", time: "08:00 PM", title: "Rooftop Drinks in Shibuya", location: "Shibuya Sky", cost: 25, notes: "Panoramic 360 night view" }
+          ]
+        }
+      ];
+      localStorage.setItem(STORE_KEYS.CUSTOM_ITINERARY, JSON.stringify(defaultCustomPlan));
+    }
+  }
+
+  // --- Currency Helpers ---
+  getCurrency() {
+    return localStorage.getItem(STORE_KEYS.CURRENCY) || "USD";
+  }
+
+  setCurrency(curr) {
+    if (CURRENCY_RATES[curr]) {
+      localStorage.setItem(STORE_KEYS.CURRENCY, curr);
+      window.dispatchEvent(new CustomEvent("currency-change", { detail: curr }));
+    }
+  }
+
+  formatPrice(usdAmount) {
+    const curr = this.getCurrency();
+    const info = CURRENCY_RATES[curr] || CURRENCY_RATES.USD;
+    const converted = Math.round(usdAmount * info.rate);
+    return `${info.symbol}${converted.toLocaleString()}`;
+  }
+
+  // --- Generic Storage Helpers ---
+  get(key) {
+    try {
+      const data = localStorage.getItem(key);
+      return data ? JSON.parse(data) : null;
+    } catch (e) {
+      console.error(`Error reading ${key} from storage:`, e);
+      return null;
+    }
+  }
+
+  set(key, value) {
+    try {
+      localStorage.setItem(key, JSON.stringify(value));
+    } catch (e) {
+      console.error(`Error writing ${key} to storage:`, e);
+    }
+  }
+
+  // --- Destinations ---
+  getDestinations() {
+    return this.get(STORE_KEYS.DESTINATIONS) || [];
+  }
+
+  getDestinationById(id) {
+    return this.getDestinations().find(d => d.id === id);
+  }
+
+  addDestination(dest) {
+    const items = this.getDestinations();
+    dest.id = "dest-" + Date.now();
+    items.unshift(dest);
+    this.set(STORE_KEYS.DESTINATIONS, items);
+    return dest;
+  }
+
+  updateDestination(id, updatedData) {
+    const items = this.getDestinations().map(d => d.id === id ? { ...d, ...updatedData } : d);
+    this.set(STORE_KEYS.DESTINATIONS, items);
+  }
+
+  deleteDestination(id) {
+    const items = this.getDestinations().filter(d => d.id !== id);
+    this.set(STORE_KEYS.DESTINATIONS, items);
+  }
+
+  // --- Packages ---
+  getPackages() {
+    return this.get(STORE_KEYS.PACKAGES) || [];
+  }
+
+  getPackageById(id) {
+    return this.getPackages().find(p => p.id === id);
+  }
+
+  addPackage(pkg) {
+    const items = this.getPackages();
+    pkg.id = "pkg-" + Date.now();
+    items.unshift(pkg);
+    this.set(STORE_KEYS.PACKAGES, items);
+    return pkg;
+  }
+
+  updatePackage(id, updatedData) {
+    const items = this.getPackages().map(p => p.id === id ? { ...p, ...updatedData } : p);
+    this.set(STORE_KEYS.PACKAGES, items);
+  }
+
+  deletePackage(id) {
+    const items = this.getPackages().filter(p => p.id !== id);
+    this.set(STORE_KEYS.PACKAGES, items);
+  }
+
+  // --- Hotels ---
+  getHotels() {
+    return this.get(STORE_KEYS.HOTELS) || [];
+  }
+
+  getHotelById(id) {
+    return this.getHotels().find(h => h.id === id);
+  }
+
+  // --- Flights ---
+  getFlights() {
+    return this.get(STORE_KEYS.FLIGHTS) || [];
+  }
+
+  getFlightById(id) {
+    return this.getFlights().find(f => f.id === id);
+  }
+
+  // --- Bookings ---
+  getBookings() {
+    return this.get(STORE_KEYS.BOOKINGS) || [];
+  }
+
+  getUserBookings(email) {
+    if (!email) return [];
+    return this.getBookings().filter(b => b.customerEmail.toLowerCase() === email.toLowerCase());
+  }
+
+  createBooking(bookingData) {
+    const items = this.getBookings();
+    const newBooking = {
+      id: "BK-" + Math.floor(1000 + Math.random() * 9000),
+      status: "Confirmed",
+      bookingDate: new Date().toISOString().split("T")[0],
+      ...bookingData
+    };
+    items.unshift(newBooking);
+    this.set(STORE_KEYS.BOOKINGS, items);
+    window.dispatchEvent(new CustomEvent("booking-created", { detail: newBooking }));
+    return newBooking;
+  }
+
+  updateBookingStatus(id, newStatus) {
+    const items = this.getBookings().map(b => b.id === id ? { ...b, status: newStatus } : b);
+    this.set(STORE_KEYS.BOOKINGS, items);
+  }
+
+  deleteBooking(id) {
+    const items = this.getBookings().filter(b => b.id !== id);
+    this.set(STORE_KEYS.BOOKINGS, items);
+  }
+
+  // --- Users & Auth ---
+  getUsers() {
+    return this.get(STORE_KEYS.USERS) || [];
+  }
+
+  getCurrentUser() {
+    return this.get(STORE_KEYS.CURRENT_USER);
+  }
+
+  setCurrentUser(user) {
+    if (user) {
+      this.set(STORE_KEYS.CURRENT_USER, user);
+    } else {
+      localStorage.removeItem(STORE_KEYS.CURRENT_USER);
+    }
+    window.dispatchEvent(new CustomEvent("auth-change", { detail: user }));
+  }
+
+  registerUser(userData) {
+    const users = this.getUsers();
+    if (users.some(u => u.email.toLowerCase() === userData.email.toLowerCase())) {
+      throw new Error("An account with this email already exists.");
+    }
+    const newUser = {
+      id: "usr-" + Date.now(),
+      role: "User",
+      avatar: `https://api.dicebear.com/7.x/bottts/svg?seed=${encodeURIComponent(userData.name)}`,
+      joinedDate: new Date().toISOString().split("T")[0],
+      status: "Active",
+      ...userData
+    };
+    users.push(newUser);
+    this.set(STORE_KEYS.USERS, users);
+    this.setCurrentUser(newUser);
+    return newUser;
+  }
+
+  loginUser(email, password) {
+    const users = this.getUsers();
+    const cleanEmail = email.toLowerCase().trim();
+    const user = users.find(u => {
+      const matchEmail = u.email.toLowerCase() === cleanEmail || 
+        (u.role === "Admin" && (cleanEmail === "admin@wanderlust.com" || cleanEmail === "rahul.raj@wanderlust.com" || cleanEmail === "rahul@wanderlust.com"));
+      return matchEmail && u.password === password;
+    });
+    if (!user) {
+      throw new Error("Invalid email or password.");
+    }
+    if (user.status === "Suspended") {
+      throw new Error("Your account has been suspended by an administrator.");
+    }
+    this.setCurrentUser(user);
+    return user;
+  }
+
+  logoutUser() {
+    this.setCurrentUser(null);
+  }
+
+  toggleUserStatus(id) {
+    const users = this.getUsers().map(u => {
+      if (u.id === id) {
+        const nextStatus = u.status === "Active" ? "Suspended" : "Active";
+        return { ...u, status: nextStatus };
+      }
+      return u;
+    });
+    this.set(STORE_KEYS.USERS, users);
+  }
+
+  toggleUserRole(id) {
+    const users = this.getUsers().map(u => {
+      if (u.id === id) {
+        const nextRole = u.role === "Admin" ? "User" : "Admin";
+        return { ...u, role: nextRole };
+      }
+      return u;
+    });
+    this.set(STORE_KEYS.USERS, users);
+  }
+
+  // --- Wishlist ---
+  getWishlist() {
+    return this.get(STORE_KEYS.WISHLIST) || [];
+  }
+
+  toggleWishlist(itemId) {
+    let list = this.getWishlist();
+    const exists = list.includes(itemId);
+    if (exists) {
+      list = list.filter(id => id !== itemId);
+    } else {
+      list.push(itemId);
+    }
+    this.set(STORE_KEYS.WISHLIST, list);
+    window.dispatchEvent(new CustomEvent("wishlist-change", { detail: list }));
+    return !exists;
+  }
+
+  // --- Reviews ---
+  getReviews() {
+    return this.get(STORE_KEYS.REVIEWS) || [];
+  }
+
+  addReview(reviewData) {
+    const items = this.getReviews();
+    const newReview = {
+      id: "rev-" + Date.now(),
+      date: new Date().toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" }),
+      likes: 0,
+      status: "approved",
+      ...reviewData
+    };
+    items.unshift(newReview);
+    this.set(STORE_KEYS.REVIEWS, items);
+    window.dispatchEvent(new CustomEvent("review-added", { detail: newReview }));
+    return newReview;
+  }
+
+  toggleReviewStatus(id) {
+    const items = this.getReviews().map(r => {
+      if (r.id === id) {
+        return { ...r, status: r.status === "approved" ? "rejected" : "approved" };
+      }
+      return r;
+    });
+    this.set(STORE_KEYS.REVIEWS, items);
+  }
+
+  deleteReview(id) {
+    const items = this.getReviews().filter(r => r.id !== id);
+    this.set(STORE_KEYS.REVIEWS, items);
+  }
+
+  // --- Custom Itinerary ---
+  getCustomItinerary() {
+    return this.get(STORE_KEYS.CUSTOM_ITINERARY) || [];
+  }
+
+  saveCustomItinerary(itineraryList) {
+    this.set(STORE_KEYS.CUSTOM_ITINERARY, itineraryList);
+    window.dispatchEvent(new CustomEvent("itinerary-change", { detail: itineraryList }));
+  }
+
+  // --- Gallery ---
+  getGallery() {
+    return this.get(STORE_KEYS.GALLERY) || [];
+  }
+
+  likeGalleryItem(id) {
+    const items = this.getGallery().map(g => g.id === id ? { ...g, likes: g.likes + 1 } : g);
+    this.set(STORE_KEYS.GALLERY, items);
+    return items.find(g => g.id === id);
+  }
+}
+
+// Global store singleton
+const travelStore = new TravelStore();
+
+// js/admin.js - Complete Frontend Admin Panel Dashboard Logic
+
+class AdminDashboard {
+  constructor() {
+    this.currentTab = "overview";
+    this.init();
+  }
+
+  init() {
+    this.navItems = document.querySelectorAll(".admin-nav-item");
+    this.tabPanes = document.querySelectorAll(".admin-tab-pane");
+    this.topbarTitle = document.getElementById("adminTopbarTitle");
+    this.addPackageModal = document.getElementById("adminAddPackageModal");
+
+    this.attachEvents();
+    this.renderAll();
+  }
+
+  attachEvents() {
+    // Admin Sidebar Tab Switching
+    this.navItems.forEach(item => {
+      item.addEventListener("click", (e) => {
+        const tab = e.currentTarget.dataset.tab;
+        this.switchTab(tab);
+      });
+    });
+
+    // Mobile Sidebar Toggle
+    const mobileToggle = document.getElementById("adminMobileToggle");
+    const sidebar = document.querySelector(".admin-sidebar");
+    if (mobileToggle && sidebar) {
+      mobileToggle.addEventListener("click", () => {
+        sidebar.classList.toggle("open");
+      });
+    }
+
+    // Add Package Form
+    const pkgForm = document.getElementById("adminAddPackageForm");
+    if (pkgForm) {
+      pkgForm.addEventListener("submit", (e) => {
+        e.preventDefault();
+        this.handleCreatePackage();
+      });
+    }
+
+    // Filter bookings by status
+    const statusFilter = document.getElementById("adminBookingStatusFilter");
+    if (statusFilter) {
+      statusFilter.addEventListener("change", () => {
+        this.renderBookingsTable();
+      });
+    }
+
+    // Search bookings
+    const searchBookings = document.getElementById("adminBookingSearch");
+    if (searchBookings) {
+      searchBookings.addEventListener("input", () => {
+        this.renderBookingsTable();
+      });
+    }
+  }
+
+  switchTab(tabId) {
+    this.currentTab = tabId;
+    this.navItems.forEach(item => {
+      item.classList.toggle("active", item.dataset.tab === tabId);
+    });
+    this.tabPanes.forEach(pane => {
+      pane.classList.toggle("active", pane.id === `adminTab-${tabId}`);
+    });
+
+    const titles = {
+      overview: "Dashboard Overview & KPI Analytics",
+      bookings: "Bookings & Reservations Management",
+      packages: "Tour Packages & Destinations Catalog",
+      users: "Registered Users & Access Control",
+      reviews: "Customer Reviews Moderation"
+    };
+
+    if (this.topbarTitle) {
+      this.topbarTitle.textContent = titles[tabId] || "Admin Dashboard";
+    }
+
+    // Close mobile sidebar if open
+    const sidebar = document.querySelector(".admin-sidebar");
+    if (sidebar) sidebar.classList.remove("open");
+
+    this.renderAll();
+  }
+
+  renderAll() {
+    this.renderKPIs();
+    this.renderCharts();
+    this.renderBookingsTable();
+    this.renderPackagesTable();
+    this.renderUsersTable();
+    this.renderReviewsTable();
+  }
+
+  // --- KPI Metrics ---
+  renderKPIs() {
+    const bookings = travelStore.getBookings();
+    const users = travelStore.getUsers();
+    const packages = travelStore.getPackages();
+    const reviews = travelStore.getReviews();
+
+    const confirmedBookings = bookings.filter(b => b.status === "Confirmed");
+    const totalRevenue = confirmedBookings.reduce((sum, b) => sum + (b.totalAmount || 0), 0);
+
+    const revenueEl = document.getElementById("kpiTotalRevenue");
+    const bookingsEl = document.getElementById("kpiTotalBookings");
+    const usersEl = document.getElementById("kpiTotalUsers");
+    const packagesEl = document.getElementById("kpiTotalPackages");
+
+    if (revenueEl) revenueEl.textContent = travelStore.formatPrice(totalRevenue);
+    if (bookingsEl) bookingsEl.textContent = bookings.length;
+    if (usersEl) usersEl.textContent = users.length;
+    if (packagesEl) packagesEl.textContent = packages.length;
+  }
+
+  // --- HTML5 Canvas Charts ---
+  renderCharts() {
+    const revenueCanvas = document.getElementById("revenueChartCanvas");
+    if (revenueCanvas && revenueCanvas.getContext) {
+      const ctx = revenueCanvas.getContext("2d");
+      const width = revenueCanvas.width = revenueCanvas.parentElement.clientWidth;
+      const height = revenueCanvas.height = 240;
+
+      ctx.clearRect(0, 0, width, height);
+
+      // Draw Revenue Line / Bar Graph
+      const months = ["Apr", "May", "Jun", "Jul", "Aug", "Sep"];
+      const data = [12400, 18500, 24600, 31200, 28900, 38400];
+      const maxVal = 45000;
+      const barWidth = 42;
+      const gap = (width - 60 - (months.length * barWidth)) / (months.length - 1);
+
+      // Grid Lines
+      ctx.strokeStyle = "#e2e8f0";
+      ctx.lineWidth = 1;
+      for (let i = 0; i <= 4; i++) {
+        const y = 20 + i * 45;
+        ctx.beginPath();
+        ctx.moveTo(40, y);
+        ctx.lineTo(width - 20, y);
+        ctx.stroke();
+      }
+
+      // Bars & Labels
+      data.forEach((val, i) => {
+        const x = 50 + i * (barWidth + gap);
+        const barHeight = (val / maxVal) * 170;
+        const y = height - 35 - barHeight;
+
+        // Gradient bar
+        const grad = ctx.createLinearGradient(0, y, 0, height - 35);
+        grad.addColorStop(0, "#0284c7");
+        grad.addColorStop(1, "#06b6d4");
+
+        ctx.fillStyle = grad;
+        ctx.beginPath();
+        ctx.roundRect ? ctx.roundRect(x, y, barWidth, barHeight, [6, 6, 0, 0]) : ctx.fillRect(x, y, barWidth, barHeight);
+        ctx.fill();
+
+        // Month text
+        ctx.fillStyle = "#64748b";
+        ctx.font = "12px sans-serif";
+        ctx.textAlign = "center";
+        ctx.fillText(months[i], x + barWidth / 2, height - 12);
+
+        // Value text
+        ctx.fillStyle = "#0f172a";
+        ctx.font = "bold 11px sans-serif";
+        ctx.fillText(`$${(val / 1000).toFixed(0)}k`, x + barWidth / 2, y - 6);
+      });
+    }
+
+    // Pie Chart for Bookings Categories
+    const catCanvas = document.getElementById("categoryChartCanvas");
+    if (catCanvas && catCanvas.getContext) {
+      const ctx = catCanvas.getContext("2d");
+      const width = catCanvas.width = catCanvas.parentElement.clientWidth;
+      const height = catCanvas.height = 240;
+
+      ctx.clearRect(0, 0, width, height);
+
+      const slices = [
+        { label: "Tours (55%)", val: 0.55, color: "#0284c7" },
+        { label: "Hotels (30%)", val: 0.30, color: "#10b981" },
+        { label: "Flights (15%)", val: 0.15, color: "#f97316" }
+      ];
+
+      const centerX = width / 2;
+      const centerY = height / 2 - 15;
+      const radius = 70;
+      let startAngle = 0;
+
+      slices.forEach(s => {
+        const sliceAngle = s.val * 2 * Math.PI;
+        ctx.fillStyle = s.color;
+        ctx.beginPath();
+        ctx.moveTo(centerX, centerY);
+        ctx.arc(centerX, centerY, radius, startAngle, startAngle + sliceAngle);
+        ctx.closePath();
+        ctx.fill();
+        startAngle += sliceAngle;
+      });
+
+      // Donut hole
+      ctx.fillStyle = "#ffffff";
+      ctx.beginPath();
+      ctx.arc(centerX, centerY, 40, 0, 2 * Math.PI);
+      ctx.fill();
+
+      // Legend
+      ctx.font = "12px sans-serif";
+      let legendX = 20;
+      slices.forEach(s => {
+        ctx.fillStyle = s.color;
+        ctx.fillRect(legendX, height - 20, 10, 10);
+        ctx.fillStyle = "#334155";
+        ctx.textAlign = "left";
+        ctx.fillText(s.label, legendX + 16, height - 11);
+        legendX += 105;
+      });
+    }
+  }
+
+  // --- Bookings Table ---
+  renderBookingsTable() {
+    const tbody = document.getElementById("adminBookingsTbody");
+    if (!tbody) return;
+
+    let bookings = travelStore.getBookings();
+    const statusFilter = document.getElementById("adminBookingStatusFilter")?.value || "all";
+    const searchQuery = (document.getElementById("adminBookingSearch")?.value || "").toLowerCase().trim();
+
+    if (statusFilter !== "all") {
+      bookings = bookings.filter(b => b.status.toLowerCase() === statusFilter.toLowerCase());
+    }
+
+    if (searchQuery) {
+      bookings = bookings.filter(b => 
+        b.customerName.toLowerCase().includes(searchQuery) ||
+        b.customerEmail.toLowerCase().includes(searchQuery) ||
+        b.itemTitle.toLowerCase().includes(searchQuery) ||
+        b.id.toLowerCase().includes(searchQuery)
+      );
+    }
+
+    if (bookings.length === 0) {
+      tbody.innerHTML = `<tr><td colspan="7" style="text-align: center; padding: 2.5rem; color: var(--text-muted);">No bookings found.</td></tr>`;
+      return;
+    }
+
+    tbody.innerHTML = bookings.map(b => `
+      <tr>
+        <td><strong>#${b.id}</strong></td>
+        <td>
+          <div style="font-weight: 700; color: var(--text-primary);">${b.customerName}</div>
+          <div style="font-size: 0.8rem; color: var(--text-muted);">${b.customerEmail}</div>
+        </td>
+        <td>
+          <span class="card-badge" style="position: static; font-size: 0.75rem; background: var(--bg-subtle); color: var(--text-primary); margin-bottom: 0.25rem;">${b.type.toUpperCase()}</span>
+          <div style="font-size: 0.88rem; font-weight: 600;">${b.itemTitle}</div>
+        </td>
+        <td>${b.date} (${b.travelers} Pax)</td>
+        <td><strong style="color: var(--primary);">${travelStore.formatPrice(b.totalAmount)}</strong></td>
+        <td>
+          <span class="status-badge ${b.status.toLowerCase()}">${b.status}</span>
+        </td>
+        <td>
+          <div class="table-actions">
+            ${b.status !== 'Confirmed' ? `
+              <button class="btn-icon" title="Approve Booking" onclick="adminDashboard.setBookingStatus('${b.id}', 'Confirmed')">✓</button>
+            ` : ''}
+            ${b.status !== 'Cancelled' ? `
+              <button class="btn-icon danger" title="Cancel Booking" onclick="adminDashboard.setBookingStatus('${b.id}', 'Cancelled')">🚫</button>
+            ` : ''}
+            <button class="btn-icon danger" title="Delete Booking" onclick="adminDashboard.removeBooking('${b.id}')">🗑️</button>
+          </div>
+        </td>
+      </tr>
+    `).join('');
+  }
+
+  setBookingStatus(id, status) {
+    travelStore.updateBookingStatus(id, status);
+    this.renderAll();
+    showToast(`Booking #${id} updated to ${status}!`, "success");
+  }
+
+  removeBooking(id) {
+    if (confirm(`Are you sure you want to delete Booking #${id}?`)) {
+      travelStore.deleteBooking(id);
+      this.renderAll();
+      showToast(`Booking #${id} removed.`, "info");
+    }
+  }
+
+  // --- Tour Packages Management ---
+  renderPackagesTable() {
+    const tbody = document.getElementById("adminPackagesTbody");
+    if (!tbody) return;
+
+    const packages = travelStore.getPackages();
+
+    tbody.innerHTML = packages.map(p => `
+      <tr>
+        <td>
+          <img src="${p.image}" alt="${p.title}" style="width: 54px; height: 42px; border-radius: var(--radius-sm); object-fit: cover;" />
+        </td>
+        <td>
+          <strong style="color: var(--text-primary);">${p.title}</strong>
+          <div style="font-size: 0.8rem; color: var(--text-muted);">📍 ${p.destination}</div>
+        </td>
+        <td><span class="card-badge" style="position: static; font-size: 0.75rem; background: var(--primary-light); color: var(--primary);">${p.category.toUpperCase()}</span></td>
+        <td>${p.durationDays}D / ${p.durationNights}N</td>
+        <td><strong>${travelStore.formatPrice(p.price)}</strong></td>
+        <td>⭐ ${p.rating.toFixed(1)}</td>
+        <td>
+          <div class="table-actions">
+            <button class="btn-icon danger" title="Delete Package" onclick="adminDashboard.removePackage('${p.id}')">🗑️</button>
+          </div>
+        </td>
+      </tr>
+    `).join('');
+  }
+
+  openAddPackageModal() {
+    if (this.addPackageModal) {
+      document.getElementById("adminAddPackageForm").reset();
+      this.addPackageModal.classList.add("active");
+    }
+  }
+
+  closeAddPackageModal() {
+    if (this.addPackageModal) {
+      this.addPackageModal.classList.remove("active");
+    }
+  }
+
+  handleCreatePackage() {
+    const title = document.getElementById("pkgTitle").value.trim();
+    const destination = document.getElementById("pkgDest").value.trim();
+    const category = document.getElementById("pkgCategory").value;
+    const price = Number(document.getElementById("pkgPrice").value);
+    const durationDays = Number(document.getElementById("pkgDays").value);
+    const image = document.getElementById("pkgImage").value.trim() || "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80";
+    const overview = document.getElementById("pkgOverview").value.trim();
+
+    travelStore.addPackage({
+      title,
+      destination,
+      category,
+      price,
+      originalPrice: Math.round(price * 1.2),
+      discount: "15% OFF",
+      durationDays,
+      durationNights: Math.max(1, durationDays - 1),
+      image,
+      rating: 5.0,
+      reviewsCount: 1,
+      featured: true,
+      groupSize: "2-12 Travelers",
+      overview,
+      highlights: ["Guided sightseeing excursions", "Luxury resort accommodations", "Daily breakfast buffet"],
+      inclusions: ["Boutique hotel stays", "Local expert guide", "Private air-conditioned transport"],
+      exclusions: ["International flights", "Personal expenses"],
+      itinerary: [
+        { day: 1, title: "Arrival & Welcome Dinner", desc: "Check-in to resort, orientation meeting, and traditional welcome dinner." },
+        { day: 2, title: "City Tour & Exploration", desc: "Full day excursion to key historic sights and scenic viewpoints." }
+      ]
+    });
+
+    this.closeAddPackageModal();
+    this.renderAll();
+    showToast("New Tour Package published successfully!", "success");
+  }
+
+  removePackage(id) {
+    if (confirm("Are you sure you want to delete this tour package?")) {
+      travelStore.deletePackage(id);
+      this.renderAll();
+      showToast("Tour package deleted.", "info");
+    }
+  }
+
+  // --- Users Table ---
+  renderUsersTable() {
+    const tbody = document.getElementById("adminUsersTbody");
+    if (!tbody) return;
+
+    const users = travelStore.getUsers();
+
+    tbody.innerHTML = users.map(u => `
+      <tr>
+        <td>
+          <div style="display: flex; align-items: center; gap: 0.75rem;">
+            <img src="${u.avatar}" alt="${u.name}" style="width: 36px; height: 36px; border-radius: 50%; object-fit: cover;" />
+            <div>
+              <strong style="color: var(--text-primary);">${u.name}</strong>
+              <div style="font-size: 0.8rem; color: var(--text-muted);">${u.email}</div>
+            </div>
+          </div>
+        </td>
+        <td>
+          <span class="card-badge" style="position: static; font-size: 0.75rem; background: ${u.role === 'Admin' ? 'var(--accent-gradient)' : 'var(--primary-light)'}; color: ${u.role === 'Admin' ? '#fff' : 'var(--primary)'};">
+            ${u.role}
+          </span>
+        </td>
+        <td>${u.joinedDate}</td>
+        <td>
+          <span class="status-badge ${u.status.toLowerCase()}">${u.status}</span>
+        </td>
+        <td>
+          <div class="table-actions">
+            <button class="btn-icon" title="Toggle Role (Admin/User)" onclick="adminDashboard.toggleRole('${u.id}')">🔄</button>
+            <button class="btn-icon danger" title="Toggle Ban Status" onclick="adminDashboard.toggleStatus('${u.id}')">🚫</button>
+          </div>
+        </td>
+      </tr>
+    `).join('');
+  }
+
+  toggleRole(id) {
+    travelStore.toggleUserRole(id);
+    this.renderUsersTable();
+    showToast("User role updated!", "success");
+  }
+
+  toggleStatus(id) {
+    travelStore.toggleUserStatus(id);
+    this.renderUsersTable();
+    showToast("User status updated!", "info");
+  }
+
+  // --- Reviews Moderation ---
+  renderReviewsTable() {
+    const tbody = document.getElementById("adminReviewsTbody");
+    if (!tbody) return;
+
+    const reviews = travelStore.getReviews();
+
+    tbody.innerHTML = reviews.map(r => `
+      <tr>
+        <td>
+          <strong>${r.author}</strong>
+          <div style="font-size: 0.8rem; color: var(--text-muted);">${r.date}</div>
+        </td>
+        <td>${r.destination}</td>
+        <td>⭐ ${r.rating} / 5</td>
+        <td style="max-width: 300px; font-size: 0.85rem;">"${r.comment}"</td>
+        <td>
+          <span class="status-badge ${r.status.toLowerCase()}">${r.status}</span>
+        </td>
+        <td>
+          <div class="table-actions">
+            <button class="btn-icon" title="Approve / Reject" onclick="adminDashboard.toggleReview('${r.id}')">⚖️</button>
+            <button class="btn-icon danger" title="Delete Review" onclick="adminDashboard.removeReview('${r.id}')">🗑️</button>
+          </div>
+        </td>
+      </tr>
+    `).join('');
+  }
+
+  toggleReview(id) {
+    travelStore.toggleReviewStatus(id);
+    this.renderReviewsTable();
+    showToast("Review moderation status updated.", "info");
+  }
+
+  removeReview(id) {
+    if (confirm("Are you sure you want to delete this review?")) {
+      travelStore.deleteReview(id);
+      this.renderReviewsTable();
+      showToast("Review removed.", "info");
+    }
+  }
+}
+
+let adminDashboard;
+document.addEventListener("DOMContentLoaded", () => {
+  if (document.getElementById("adminTab-overview")) {
+    adminDashboard = new AdminDashboard();
+  }
+});
+
+// js/app.js - Global App Initializer, Theme, Currency, Toast, and UI Interactivity
+
+// --- Toast Notification Engine ---
+function showToast(message, type = "info") {
+  let container = document.getElementById("toastContainer");
+  if (!container) {
+    container = document.createElement("div");
+    container.id = "toastContainer";
+    container.className = "toast-container";
+    document.body.appendChild(container);
+  }
+
+  const icons = {
+    success: "✓",
+    error: "✕",
+    info: "ℹ️"
+  };
+
+  const toast = document.createElement("div");
+  toast.className = `toast toast-${type}`;
+  toast.innerHTML = `
+    <span style="font-size: 1.2rem;">${icons[type] || "ℹ️"}</span>
+    <span style="flex: 1;">${message}</span>
+  `;
+
+  container.appendChild(toast);
+
+  setTimeout(() => {
+    toast.style.animation = "slideInRight 0.3s ease reverse forwards";
+    setTimeout(() => toast.remove(), 300);
+  }, 3500);
+}
+
+class AppInitializer {
+  constructor() {
+    this.initTheme();
+    this.initCurrency();
+    this.initNavigation();
+    this.initContactAndFAQ();
+    this.initModals();
+    this.initScrollTop();
+  }
+
+  // --- Theme Management ---
+  initTheme() {
+    const savedTheme = localStorage.getItem(STORE_KEYS.THEME) || "light";
+    document.documentElement.setAttribute("data-theme", savedTheme);
+
+    const themeToggleBtns = document.querySelectorAll(".theme-toggle-btn");
+    this.updateThemeIcons(savedTheme);
+
+    themeToggleBtns.forEach(btn => {
+      btn.addEventListener("click", () => {
+        const currentTheme = document.documentElement.getAttribute("data-theme");
+        const nextTheme = currentTheme === "dark" ? "light" : "dark";
+        document.documentElement.setAttribute("data-theme", nextTheme);
+        localStorage.setItem(STORE_KEYS.THEME, nextTheme);
+        this.updateThemeIcons(nextTheme);
+        showToast(`Switched to ${nextTheme} mode 🌓`, "info");
+      });
+    });
+  }
+
+  updateThemeIcons(theme) {
+    document.querySelectorAll(".theme-toggle-btn").forEach(btn => {
+      btn.innerHTML = theme === "dark" ? "☀️" : "🌙";
+    });
+  }
+
+  // --- Currency Selector ---
+  initCurrency() {
+    const currencySelects = document.querySelectorAll(".currency-select");
+    const currentCurrency = travelStore.getCurrency();
+
+    currencySelects.forEach(sel => {
+      sel.value = currentCurrency;
+      sel.addEventListener("change", (e) => {
+        const val = e.target.value;
+        travelStore.setCurrency(val);
+        currencySelects.forEach(s => s.value = val);
+        showToast(`Currency changed to ${val}`, "info");
+      });
+    });
+  }
+
+  // --- Navigation & Mobile Drawer ---
+  initNavigation() {
+    const hamburgerBtn = document.getElementById("hamburgerBtn");
+    const navMenu = document.getElementById("navMenu");
+
+    if (hamburgerBtn && navMenu) {
+      hamburgerBtn.addEventListener("click", () => {
+        navMenu.classList.toggle("open");
+      });
+
+      document.querySelectorAll(".nav-link").forEach(link => {
+        link.addEventListener("click", () => {
+          navMenu.classList.remove("open");
+        });
+      });
+    }
+
+    // Active link highlighting on scroll
+    const sections = document.querySelectorAll("section[id]");
+    window.addEventListener("scroll", () => {
+      const scrollY = window.pageYOffset;
+      sections.forEach(current => {
+        const sectionHeight = current.offsetHeight;
+        const sectionTop = current.offsetTop - 120;
+        const sectionId = current.getAttribute("id");
+        const navLink = document.querySelector(`.nav-menu a[href*=${sectionId}]`);
+
+        if (navLink) {
+          if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
+            navLink.classList.add("active");
+          } else {
+            navLink.classList.remove("active");
+          }
+        }
+      });
+    });
+  }
+
+  // --- Contact Form & FAQ Accordion ---
+  initContactAndFAQ() {
+    const contactForm = document.getElementById("contactForm");
+    if (contactForm) {
+      contactForm.addEventListener("submit", (e) => {
+        e.preventDefault();
+        showToast("Your message has been sent! Our travel specialist will reach out within 24 hours.", "success");
+        contactForm.reset();
+      });
+    }
+
+    const newsletterForms = document.querySelectorAll(".newsletter-form");
+    newsletterForms.forEach(form => {
+      form.addEventListener("submit", (e) => {
+        e.preventDefault();
+        showToast("Subscribed! Check your inbox for exclusive travel deals.", "success");
+        form.reset();
+      });
+    });
+
+    const faqQuestions = document.querySelectorAll(".faq-question");
+    faqQuestions.forEach(q => {
+      q.addEventListener("click", () => {
+        const item = q.parentElement;
+        const wasOpen = item.classList.contains("open");
+        document.querySelectorAll(".faq-item").forEach(i => i.classList.remove("open"));
+        if (!wasOpen) {
+          item.classList.add("open");
+        }
+      });
+    });
+  }
+
+  // --- Generic Modal Closer Handlers ---
+  initModals() {
+    document.querySelectorAll(".modal-backdrop").forEach(backdrop => {
+      backdrop.addEventListener("click", (e) => {
+        if (e.target === backdrop) {
+          backdrop.classList.remove("active");
+        }
+      });
+    });
+
+    document.querySelectorAll(".modal-close-btn").forEach(btn => {
+      btn.addEventListener("click", (e) => {
+        const modal = e.target.closest(".modal-backdrop") || e.target.closest(".lightbox-modal");
+        if (modal) {
+          modal.classList.remove("active");
+        }
+      });
+    });
+  }
+
+  // --- Scroll To Top ---
+  initScrollTop() {
+    const scrollTopBtn = document.getElementById("scrollTopBtn");
+    if (!scrollTopBtn) return;
+
+    window.addEventListener("scroll", () => {
+      if (window.pageYOffset > 400) {
+        scrollTopBtn.classList.add("visible");
+      } else {
+        scrollTopBtn.classList.remove("visible");
+      }
+    });
+
+    scrollTopBtn.addEventListener("click", () => {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+  }
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  new AppInitializer();
+});
+</script>
+</body>
+</html>

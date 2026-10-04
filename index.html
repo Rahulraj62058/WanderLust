@@ -1,0 +1,893 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>WanderLust | Global Travel & Tour Experience</title>
+  <meta name="description" content="Discover dream destinations, book exclusive tour packages, luxury hotels, flights, and craft custom travel itineraries with WanderLust." />
+  
+  <!-- Google Fonts: Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/components.css" />
+  <link rel="stylesheet" href="css/responsive.css" />
+  <link rel="stylesheet" href="css/animated-bg.css" />
+</head>
+<body>
+
+  <!-- ==================== Header & Navigation ==================== -->
+  <header class="site-header">
+    <div class="container header-container">
+      <a href="#hero" class="brand-logo">
+        <div class="brand-logo-icon">✈️</div>
+        <div>Wander<span>Lust</span></div>
+      </a>
+
+      <nav>
+        <ul class="nav-menu" id="navMenu">
+          <li><a href="#hero" class="nav-link active">Home</a></li>
+          <li><a href="#destinations" class="nav-link">Destinations</a></li>
+          <li><a href="#packages" class="nav-link">Tour Packages</a></li>
+          <li><a href="#hotels" class="nav-link">Hotels</a></li>
+          <li><a href="#flights" class="nav-link">Flights</a></li>
+          <li><a href="#itinerary" class="nav-link">Itinerary Planner</a></li>
+          <li><a href="#gallery" class="nav-link">Gallery</a></li>
+          <li><a href="#reviews" class="nav-link">Reviews</a></li>
+          <li><a href="#contact" class="nav-link">Contact</a></li>
+          <li><a href="javascript:void(0)" class="nav-link mobile-login-link" onclick="if(window.authManager) window.authManager.handleAuthClick();">👤 Login</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-actions">
+        <!-- Currency Selector -->
+        <select class="currency-select" id="currencySelect" title="Select Currency">
+          <option value="USD">USD ($)</option>
+          <option value="EUR">EUR (€)</option>
+          <option value="GBP">GBP (£)</option>
+          <option value="INR">INR (₹)</option>
+          <option value="JPY">JPY (¥)</option>
+          <option value="AUD">AUD (A$)</option>
+        </select>
+
+        <!-- Dark/Light Theme Toggle -->
+        <button class="control-btn theme-toggle-btn" title="Toggle Theme">🌙</button>
+
+        <!-- Admin Portal Link -->
+        <a href="admin.html" class="admin-nav-btn" title="Admin Dashboard">
+          <span>⚙️</span>
+          <span>Admin</span>
+        </a>
+
+        <!-- Auth / Profile Button -->
+        <button id="loginBtn" class="btn btn-primary btn-sm login-btn" type="button" onclick="if(window.authManager) window.authManager.handleAuthClick();" title="Login / Profile">
+          <span>👤</span>
+          <span id="loginBtnText">Login</span>
+        </button>
+
+        <!-- Mobile Hamburger -->
+        <button class="hamburger-btn" id="hamburgerBtn" aria-label="Toggle navigation">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ==================== Hero Section ==================== -->
+  <section class="hero-section" id="hero">
+    <div class="container">
+      <div class="hero-grid">
+        <div class="hero-content">
+          <div class="hero-tag">
+            <span>✨</span> Explore The Unexplored
+          </div>
+          <h1 class="hero-title">
+            Unforgettable <span class="gradient-text">Adventures</span> Around The Globe
+          </h1>
+          <p class="hero-description">
+            Experience handcrafted tour packages, luxury resort stays, effortless flight booking, and interactive customized itineraries designed for modern wanderers.
+          </p>
+          <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+            <a href="#packages" class="btn btn-primary btn-lg">Explore Tour Packages ➔</a>
+            <a href="#itinerary" class="btn btn-secondary btn-lg">Plan Custom Trip 🗺️</a>
+          </div>
+
+          <div class="hero-stats">
+            <div class="hero-stat-item">
+              <h3>150+</h3>
+              <p>Destinations</p>
+            </div>
+            <div class="hero-stat-item">
+              <h3>45k+</h3>
+              <p>Happy Travelers</p>
+            </div>
+            <div class="hero-stat-item">
+              <h3>4.9/5</h3>
+              <p>Customer Rating</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-image-card">
+          <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1000&q=80" alt="Tropical Beach Vacation" class="hero-main-img" />
+          
+          <div class="hero-floating-card hero-card-1">
+            <div class="floating-icon gold">⭐</div>
+            <div>
+              <strong style="font-size: 0.95rem; display: block; color: var(--text-primary);">Top Rated Tours</strong>
+              <span style="font-size: 0.8rem; color: var(--text-muted);">Over 1,200+ 5-star reviews</span>
+            </div>
+          </div>
+
+          <div class="hero-floating-card hero-card-2">
+            <div class="floating-icon blue">🛡️</div>
+            <div>
+              <strong style="font-size: 0.95rem; display: block; color: var(--text-primary);">100% Free Cancellation</strong>
+              <span style="font-size: 0.8rem; color: var(--text-muted);">Up to 48 hrs before trip</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Live Multi-Tab Search Widget -->
+      <div class="search-widget" id="searchWidget">
+        <div class="search-tabs">
+          <button class="search-tab-btn active" data-tab="tours">🎒 Tour Packages</button>
+          <button class="search-tab-btn" data-tab="hotels">🏨 Luxury Hotels</button>
+          <button class="search-tab-btn" data-tab="flights">✈️ Flights Booking</button>
+        </div>
+
+        <!-- Tours Search Pane -->
+        <div class="search-pane active" id="searchPane-tours">
+          <form class="search-form-grid" id="heroToursForm">
+            <div class="search-field">
+              <label>Destination</label>
+              <div class="search-input-wrapper">
+                <span>📍</span>
+                <input type="text" id="heroTourDest" placeholder="Where to? (e.g. Bali, Swiss Alps)" />
+              </div>
+            </div>
+            <div class="search-field">
+              <label>Travel Date</label>
+              <div class="search-input-wrapper">
+                <span>📅</span>
+                <input type="date" value="2026-09-20" />
+              </div>
+            </div>
+            <div class="search-field">
+              <label>Travelers</label>
+              <div class="search-input-wrapper">
+                <span>👥</span>
+                <select>
+                  <option>1 Adult</option>
+                  <option selected>2 Adults</option>
+                  <option>2 Adults, 1 Child</option>
+                  <option>Group (4+ Pax)</option>
+                </select>
+              </div>
+            </div>
+            <div class="search-field">
+              <label>Category</label>
+              <div class="search-input-wrapper">
+                <span>🏷️</span>
+                <select>
+                  <option>All Types</option>
+                  <option>Beach & Island</option>
+                  <option>Mountain Expedition</option>
+                  <option>Cultural Heritage</option>
+                  <option>Adventure & Safari</option>
+                </select>
+              </div>
+            </div>
+            <div class="search-btn-wrap">
+              <button type="submit" class="btn btn-primary btn-block">Search Tours ➔</button>
+            </div>
+          </form>
+        </div>
+
+        <!-- Hotels Search Pane -->
+        <div class="search-pane" id="searchPane-hotels">
+          <form class="search-form-grid" id="heroHotelsForm">
+            <div class="search-field">
+              <label>City or Resort</label>
+              <div class="search-input-wrapper">
+                <span>🏨</span>
+                <input type="text" placeholder="e.g. Kyoto, Santorini, Dubai" />
+              </div>
+            </div>
+            <div class="search-field">
+              <label>Check In</label>
+              <div class="search-input-wrapper">
+                <span>📅</span>
+                <input type="date" value="2026-10-05" />
+              </div>
+            </div>
+            <div class="search-field">
+              <label>Check Out</label>
+              <div class="search-input-wrapper">
+                <span>📅</span>
+                <input type="date" value="2026-10-10" />
+              </div>
+            </div>
+            <div class="search-field">
+              <label>Rooms & Guests</label>
+              <div class="search-input-wrapper">
+                <span>🛏️</span>
+                <select>
+                  <option>1 Room, 2 Guests</option>
+                  <option>1 Room, 1 Guest</option>
+                  <option>2 Rooms, 4 Guests</option>
+                </select>
+              </div>
+            </div>
+            <div class="search-btn-wrap">
+              <button type="submit" class="btn btn-primary btn-block">Find Hotels ➔</button>
+            </div>
+          </form>
+        </div>
+
+        <!-- Flights Search Pane -->
+        <div class="search-pane" id="searchPane-flights">
+          <form class="search-form-grid" id="heroFlightsForm">
+            <div class="search-field">
+              <label>From</label>
+              <div class="search-input-wrapper">
+                <span>🛫</span>
+                <input type="text" placeholder="New York (JFK)" />
+              </div>
+            </div>
+            <div class="search-field">
+              <label>To</label>
+              <div class="search-input-wrapper">
+                <span>🛬</span>
+                <input type="text" placeholder="Dubai (DXB)" />
+              </div>
+            </div>
+            <div class="search-field">
+              <label>Departure Date</label>
+              <div class="search-input-wrapper">
+                <span>📅</span>
+                <input type="date" value="2026-09-25" />
+              </div>
+            </div>
+            <div class="search-field">
+              <label>Cabin Class</label>
+              <div class="search-input-wrapper">
+                <span>💺</span>
+                <select>
+                  <option>Economy</option>
+                  <option>Premium Economy</option>
+                  <option>Business Class</option>
+                  <option>First Class</option>
+                </select>
+              </div>
+            </div>
+            <div class="search-btn-wrap">
+              <button type="submit" class="btn btn-primary btn-block">Find Flights ➔</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== Destinations & Filter Section ==================== -->
+  <section class="section" id="destinations">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-badge">Featured Locations</span>
+        <h2 class="section-title">Explore Top <span>Destinations</span></h2>
+        <p class="section-subtitle">Browse curated global destinations with live filtering by category, pricing, star ratings, and keywords.</p>
+      </div>
+
+      <!-- Filter Controls Bar -->
+      <div class="filter-bar-container">
+        <!-- Category Filter Pills -->
+        <div class="category-pills">
+          <button class="pill-btn category-pill active" data-category="all">✨ All Destinations</button>
+          <button class="pill-btn category-pill" data-category="budget">💰 Low Budget (₹10k - ₹25k)</button>
+          <button class="pill-btn category-pill" data-category="beach">🏖️ Beach & Islands</button>
+          <button class="pill-btn category-pill" data-category="mountain">🏔️ Mountain Escapes</button>
+          <button class="pill-btn category-pill" data-category="adventure">🧗 Adventure & Rafting</button>
+          <button class="pill-btn category-pill" data-category="cultural">⛩️ Cultural Heritage</button>
+          <button class="pill-btn category-pill" data-category="romantic">❤️ Romantic & Maldives</button>
+          <button class="pill-btn category-pill" data-category="city">🏙️ City Breaks</button>
+          <button class="pill-btn category-pill" data-category="wildlife">🦁 Wildlife Safaris</button>
+        </div>
+
+        <div class="filter-controls-row">
+          <div class="search-box-inline">
+            <span class="icon">🔍</span>
+            <input type="text" id="destSearchInput" placeholder="Search destination by city, country or keyword..." />
+          </div>
+
+          <div class="filter-sliders">
+            <div class="range-slider-wrap">
+              <span>Max Budget:</span>
+              <input type="range" id="destPriceRange" min="100" max="6000" step="50" value="6000" />
+              <strong id="destPriceDisplay" style="color: var(--primary);">$6,000</strong>
+            </div>
+
+            <div class="sort-select-wrap">
+              <select id="destSortSelect">
+                <option value="popular">Sort: Most Popular</option>
+                <option value="rating">Sort: Highest Rated</option>
+                <option value="price-asc">Price: Low to High</option>
+                <option value="price-desc">Price: High to Low</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Destinations Grid -->
+      <div class="cards-grid" id="destinationsGrid">
+        <!-- Dynamically rendered via JS -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== Tour Packages Section ==================== -->
+  <section class="section" id="packages" style="background: var(--bg-subtle);">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-badge">Exclusive Itineraries</span>
+        <h2 class="section-title">Handcrafted <span>Tour Packages</span></h2>
+        <p class="section-subtitle">All-inclusive guided expeditions featuring luxury stays, transport, authentic local dining, and licensed local experts.</p>
+      </div>
+
+      <div class="cards-grid" id="packagesGrid">
+        <!-- Dynamically rendered via JS -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== Hotel Booking Section ==================== -->
+  <section class="section" id="hotels">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-badge">Luxury Stays</span>
+        <h2 class="section-title">World-Class <span>Hotels & Resorts</span></h2>
+        <p class="section-subtitle">Handpicked 5-star villas, alpine chalets, and historic boutique retreats with guaranteed best price reservations.</p>
+      </div>
+
+      <div class="cards-grid" id="hotelsGrid">
+        <!-- Dynamically rendered via JS -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== Flight Booking Section ==================== -->
+  <section class="section" id="flights" style="background: var(--bg-subtle);">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-badge">Fast & Seamless</span>
+        <h2 class="section-title">Premium <span>Flight Booking</span></h2>
+        <p class="section-subtitle">Book domestic and international flights with premium global airlines offering non-stop routes and lie-flat business suites.</p>
+      </div>
+
+      <div id="flightsGrid">
+        <!-- Dynamically rendered via JS -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== Interactive Itinerary Planner Section ==================== -->
+  <section class="section" id="itinerary">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-badge">Custom Trip Builder</span>
+        <h2 class="section-title">Interactive <span>Travel Itinerary</span> Planner</h2>
+        <p class="section-subtitle">Design your dream vacation day-by-day. Add custom activities, schedule times, calculate estimated trip budgets, and export printable summaries.</p>
+      </div>
+
+      <div class="itinerary-container">
+        <div class="itinerary-header-bar">
+          <div>
+            <span style="font-size: 0.85rem; color: var(--text-muted); font-weight: 700; text-transform: uppercase;">Estimated Activities Cost:</span>
+            <div style="font-size: 1.85rem; font-weight: 800; color: var(--primary);" id="itineraryTotalCost">$0</div>
+          </div>
+
+          <div style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
+            <button class="btn btn-secondary btn-sm" id="exportItineraryBtn">Export / Print Plan 🖨️</button>
+            <button class="btn btn-primary btn-sm" id="addItineraryDayBtn">+ Add New Day 📅</button>
+          </div>
+        </div>
+
+        <!-- Days Navigation Tab -->
+        <div class="itinerary-days-nav" id="itineraryDaysNav">
+          <!-- Dynamically rendered via JS -->
+        </div>
+
+        <!-- Timeline Container -->
+        <div id="itineraryTimeline">
+          <!-- Dynamically rendered via JS -->
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== Photo Gallery Section ==================== -->
+  <section class="section" id="gallery" style="background: var(--bg-subtle);">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-badge">Travel Visuals</span>
+        <h2 class="section-title">Traveler <span>Photo Gallery</span></h2>
+        <p class="section-subtitle">Get inspired by high-resolution captures from our traveler community worldwide. Click any image to open the fullscreen lightbox viewer.</p>
+      </div>
+
+      <div class="category-pills" style="justify-content: center; margin-bottom: 2rem;">
+        <button class="pill-btn gallery-pill active" data-category="all">All Photos</button>
+        <button class="pill-btn gallery-pill" data-category="nature">🌿 Nature</button>
+        <button class="pill-btn gallery-pill" data-category="mountains">🏔️ Mountains</button>
+        <button class="pill-btn gallery-pill" data-category="beaches">🏖️ Beaches</button>
+        <button class="pill-btn gallery-pill" data-category="culture">⛩️ Culture</button>
+        <button class="pill-btn gallery-pill" data-category="cities">🏙️ Cities</button>
+      </div>
+
+      <div class="gallery-grid" id="galleryGrid">
+        <!-- Dynamically rendered via JS -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== Reviews & Ratings Section ==================== -->
+  <section class="section" id="reviews">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-badge">Verified Testimonials</span>
+        <h2 class="section-title">Reviews & <span>Traveler Ratings</span></h2>
+        <p class="section-subtitle">Real experiences shared by thousands of globetrotters who booked their adventures with WanderLust.</p>
+      </div>
+
+      <!-- Rating Breakdown Summary Box -->
+      <div class="reviews-summary-card">
+        <div class="score-box">
+          <div class="big-rating-number" id="reviewsAvgScore">4.9</div>
+          <div class="stars-rating">★★★★★</div>
+          <p style="font-size: 0.9rem; color: var(--text-muted);" id="reviewsTotalCount">Based on 1,240+ reviews</p>
+          <button class="btn btn-primary btn-sm" id="openWriteReviewBtn" style="margin-top: 1rem;">
+            ✍️ Write a Review
+          </button>
+        </div>
+
+        <div class="rating-bars-wrap">
+          <div class="rating-bar-row">
+            <span>5 Stars</span>
+            <div class="progress-track"><div class="progress-fill" id="starProgress-5" style="width: 88%;"></div></div>
+            <span id="starPct-5">88%</span>
+          </div>
+          <div class="rating-bar-row">
+            <span>4 Stars</span>
+            <div class="progress-track"><div class="progress-fill" id="starProgress-4" style="width: 10%;"></div></div>
+            <span id="starPct-4">10%</span>
+          </div>
+          <div class="rating-bar-row">
+            <span>3 Stars</span>
+            <div class="progress-track"><div class="progress-fill" id="starProgress-3" style="width: 2%;"></div></div>
+            <span id="starPct-3">2%</span>
+          </div>
+          <div class="rating-bar-row">
+            <span>2 Stars</span>
+            <div class="progress-track"><div class="progress-fill" id="starProgress-2" style="width: 0%;"></div></div>
+            <span id="starPct-2">0%</span>
+          </div>
+          <div class="rating-bar-row">
+            <span>1 Star</span>
+            <div class="progress-track"><div class="progress-fill" id="starProgress-1" style="width: 0%;"></div></div>
+            <span id="starPct-1">0%</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Customer Reviews Grid -->
+      <div class="cards-grid" id="reviewsGrid">
+        <!-- Dynamically rendered via JS -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== Contact & FAQ Section ==================== -->
+  <section class="section" id="contact" style="background: var(--bg-subtle);">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-badge">Get In Touch</span>
+        <h2 class="section-title">Have Questions? <span>Contact Us</span></h2>
+        <p class="section-subtitle">Our 24/7 dedicated travel concierge team is here to tailor your itinerary and answer every booking query.</p>
+      </div>
+
+      <div class="contact-grid">
+        <!-- Contact Form Card -->
+        <div class="contact-card">
+          <h3 style="font-size: 1.4rem; font-weight: 800; margin-bottom: 1.5rem; color: var(--text-primary);">Send Us a Message</h3>
+          <form id="contactForm">
+            <div class="form-group">
+              <label>Full Name *</label>
+              <input type="text" class="form-control" required placeholder="John Doe" />
+            </div>
+            <div class="form-group">
+              <label>Email Address *</label>
+              <input type="email" class="form-control" required placeholder="john@example.com" />
+            </div>
+            <div class="form-group">
+              <label>Trip Destination of Interest</label>
+              <input type="text" class="form-control" placeholder="e.g. Bali, Japan, Swiss Alps" />
+            </div>
+            <div class="form-group">
+              <label>Your Message / Requirements *</label>
+              <textarea class="form-control" rows="4" required placeholder="Tell us about your travel dates, party size, and special preferences..."></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary btn-block btn-lg">Send Inquiry ➔</button>
+          </form>
+        </div>
+
+        <!-- FAQ Accordion -->
+        <div>
+          <h3 style="font-size: 1.4rem; font-weight: 800; margin-bottom: 1.5rem; color: var(--text-primary);">Frequently Asked Questions</h3>
+          <div class="faq-accordion">
+            <div class="faq-item open">
+              <button class="faq-question">
+                <span>What is the cancellation and refund policy?</span>
+                <span class="faq-icon">▼</span>
+              </button>
+              <div class="faq-answer">
+                We provide 100% free cancellation on most tour packages and hotel bookings up to 48 hours before scheduled departure. Refunds are processed back to your original payment method within 3 to 5 business days.
+              </div>
+            </div>
+
+            <div class="faq-item">
+              <button class="faq-question">
+                <span>Are international flights included in tour packages?</span>
+                <span class="faq-icon">▼</span>
+              </button>
+              <div class="faq-answer">
+                Base tour packages cover all local airport transfers, high-speed rail passes, and internal flights. International flights to/from your home airport can be added seamlessly via our Flights Booking module.
+              </div>
+            </div>
+
+            <div class="faq-item">
+              <button class="faq-question">
+                <span>Can I customize a pre-made tour itinerary?</span>
+                <span class="faq-icon">▼</span>
+              </button>
+              <div class="faq-answer">
+                Yes! You can use our interactive Itinerary Planner to adjust activities, add private tour guides, extend resort stays, and request tailored arrangements through our travel specialists.
+              </div>
+            </div>
+
+            <div class="faq-item">
+              <button class="faq-question">
+                <span>What payment options do you support?</span>
+                <span class="faq-icon">▼</span>
+              </button>
+              <div class="faq-answer">
+                We accept all major Credit/Debit Cards (Visa, MasterCard, Amex), PayPal, Apple Pay, Google Pay, and Direct Bank Transfers in multiple global currencies.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== Footer ==================== -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="#hero" class="brand-logo">
+            <div class="brand-logo-icon">✈️</div>
+            <div>Wander<span>Lust</span></div>
+          </a>
+          <p>
+            Crafting seamless, unforgettable travel experiences worldwide. Your trusted companion for luxury tours, boutique hotels, and global journeys.
+          </p>
+          <div class="footer-socials">
+            <a href="#" class="social-link" title="Instagram">📷</a>
+            <a href="#" class="social-link" title="Twitter / X">🐦</a>
+            <a href="#" class="social-link" title="Facebook">📘</a>
+            <a href="#" class="social-link" title="YouTube">▶️</a>
+          </div>
+        </div>
+
+        <div class="footer-column">
+          <h4>Destinations</h4>
+          <ul class="footer-links">
+            <li><a href="#destinations">Bali, Indonesia</a></li>
+            <li><a href="#destinations">Swiss Alps</a></li>
+            <li><a href="#destinations">Kyoto & Tokyo</a></li>
+            <li><a href="#destinations">Santorini, Greece</a></li>
+            <li><a href="#destinations">Dubai, UAE</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-column">
+          <h4>Services</h4>
+          <ul class="footer-links">
+            <li><a href="#packages">Tour Packages</a></li>
+            <li><a href="#hotels">Hotel Reservations</a></li>
+            <li><a href="#flights">Flight Deals</a></li>
+            <li><a href="#itinerary">Custom Itinerary</a></li>
+            <li><a href="admin.html">Admin Dashboard</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-column">
+          <h4>Company</h4>
+          <ul class="footer-links">
+            <li><a href="#hero">About Us</a></li>
+            <li><a href="#reviews">Testimonials</a></li>
+            <li><a href="#gallery">Travel Gallery</a></li>
+            <li><a href="#contact">Help & Support</a></li>
+            <li><a href="#contact">Privacy Policy</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-column">
+          <h4>Newsletter</h4>
+          <p style="font-size: 0.88rem; color: var(--text-secondary);">
+            Subscribe to get secret flight deals and seasonal tour discounts!
+          </p>
+          <form class="newsletter-form">
+            <input type="email" placeholder="Your email address..." required />
+            <button type="submit" class="btn btn-primary btn-sm">Subscribe ➔</button>
+          </form>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2026 WanderLust Travel Inc. All rights reserved. Designed with modern HTML5, CSS3 & JavaScript.</p>
+        <p>🔒 256-Bit SSL Encrypted & PCI Compliant</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==================== Floating Widgets ==================== -->
+  <!-- Scroll to top button -->
+  <button class="scroll-top-btn" id="scrollTopBtn" title="Back to top">↑</button>
+
+  <!-- Live Chatbot Toggle -->
+  <button class="chatbot-toggle-btn" id="chatbotToggleBtn" title="Chat with WanderBot">💬</button>
+
+  <!-- Chatbot Window -->
+  <div class="chatbot-window" id="chatbotWindow">
+    <div class="chatbot-header">
+      <div style="display: flex; align-items: center; gap: 0.6rem;">
+        <span style="font-size: 1.4rem;">🤖</span>
+        <div>
+          <h4 style="font-size: 1rem; font-weight: 800;">WanderBot</h4>
+          <span style="font-size: 0.72rem; opacity: 0.9;">AI Travel Assistant • Online</span>
+        </div>
+      </div>
+      <button id="chatCloseBtn" style="color: #fff; font-size: 1.2rem;">✕</button>
+    </div>
+    <div class="chatbot-messages" id="chatMessages"></div>
+    <div class="chatbot-suggestions">
+      <span class="chat-suggestion-chip">🌴 Bali Tour</span>
+      <span class="chat-suggestion-chip">🏔️ Swiss Alps</span>
+      <span class="chat-suggestion-chip">🎟️ Promo Code</span>
+      <span class="chat-suggestion-chip">🏨 Hotels</span>
+    </div>
+    <div class="chatbot-input-bar">
+      <input type="text" id="chatInput" placeholder="Ask anything about tours, hotels, flights..." />
+      <button id="chatSendBtn" class="btn btn-primary btn-sm" style="padding: 0.5rem 0.8rem;">➔</button>
+    </div>
+  </div>
+
+  <!-- ==================== Modals ==================== -->
+
+  <!-- 1. Auth Modal (Sign In / Register) -->
+  <div class="modal-backdrop" id="authModal">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <h3 class="modal-title">Welcome to WanderLust</h3>
+        <button class="modal-close-btn" onclick="authManager.closeAuthModal()">✕</button>
+      </div>
+      <div class="modal-body">
+        <div class="search-tabs" style="justify-content: center; margin-bottom: 1.5rem;">
+          <button class="search-tab-btn auth-tab-btn active" data-mode="login">Login</button>
+          <button class="search-tab-btn auth-tab-btn" data-mode="register">Create Account</button>
+        </div>
+
+        <!-- Login Pane -->
+        <div id="loginPane">
+          <form id="loginForm">
+            <div class="form-group">
+              <label>Email Address or Username</label>
+              <input type="text" id="loginEmail" class="form-control" required placeholder="admin or rahul.raj@wanderlust.com" autocomplete="username" />
+            </div>
+            <div class="form-group">
+              <label>Password</label>
+              <input type="password" id="loginPassword" class="form-control" required placeholder="••••••••" autocomplete="current-password" />
+            </div>
+            <div style="background: var(--bg-subtle); padding: 0.75rem 1rem; border-radius: var(--radius-sm); margin-bottom: 1rem; font-size: 0.8rem; color: var(--text-secondary);">
+              <div style="font-weight: 700; margin-bottom: 0.35rem;">Demo Accounts (Click to auto-fill):</div>
+              <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+                <button type="button" class="btn btn-secondary btn-sm" onclick="if(window.authManager) window.authManager.fillDemo('admin')" style="font-size: 0.75rem; padding: 0.25rem 0.6rem; cursor: pointer;">• Admin: rahul.raj@wanderlust.com / admin</button>
+                <button type="button" class="btn btn-secondary btn-sm" onclick="if(window.authManager) window.authManager.fillDemo('user')" style="font-size: 0.75rem; padding: 0.25rem 0.6rem; cursor: pointer;">• User: john@traveler.com / user123</button>
+              </div>
+            </div>
+            <button type="submit" id="loginSubmitBtn" class="btn btn-primary btn-block btn-lg login-submit-btn">Login ➔</button>
+          </form>
+        </div>
+
+        <!-- Register Pane -->
+        <div id="registerPane" style="display: none;">
+          <form id="registerForm">
+            <div class="form-group">
+              <label>Full Name</label>
+              <input type="text" id="regName" class="form-control" required placeholder="Alex Morgan" />
+            </div>
+            <div class="form-group">
+              <label>Email Address</label>
+              <input type="email" id="regEmail" class="form-control" required placeholder="alex@example.com" />
+            </div>
+            <div class="form-group">
+              <label>Password</label>
+              <input type="password" id="regPassword" class="form-control" required placeholder="At least 6 characters" />
+            </div>
+            <div class="form-group">
+              <label>Confirm Password</label>
+              <input type="password" id="regConfirmPassword" class="form-control" required placeholder="Repeat password" />
+            </div>
+            <button type="submit" class="btn btn-primary btn-block btn-lg">Create Account ➔</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2. User Profile & Bookings Modal -->
+  <div class="modal-backdrop" id="profileModal">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <h3 class="modal-title">My Account & Bookings</h3>
+        <button class="modal-close-btn" onclick="authManager.closeProfileModal()">✕</button>
+      </div>
+      <div class="modal-body" id="profileModalBody">
+        <!-- Dynamically rendered via JS -->
+      </div>
+    </div>
+  </div>
+
+  <!-- 3. Tour Package Details Modal -->
+  <div class="modal-backdrop" id="packageDetailModal">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-header">
+        <h3 class="modal-title" id="packageDetailModalTitle">Package Details</h3>
+        <button class="modal-close-btn" onclick="bookingManager.closePackageDetails()">✕</button>
+      </div>
+      <div class="modal-body" id="packageDetailModalBody">
+        <!-- Dynamically rendered via JS -->
+      </div>
+    </div>
+  </div>
+
+  <!-- 4. Universal Booking / Checkout Modal -->
+  <div class="modal-backdrop" id="bookingModal">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <h3 class="modal-title" id="bookingModalTitle">Reserve & Checkout</h3>
+        <button class="modal-close-btn" onclick="bookingManager.closeBookingModal()">✕</button>
+      </div>
+      <div class="modal-body" id="bookingModalBody">
+        <!-- Dynamically rendered via JS -->
+      </div>
+    </div>
+  </div>
+
+  <!-- 5. Booking Confirmation / Receipt Modal -->
+  <div class="modal-backdrop" id="confirmationModal">
+    <div class="modal-dialog">
+      <div class="modal-body" id="confirmationModalBody">
+        <!-- Dynamically rendered via JS -->
+      </div>
+    </div>
+  </div>
+
+  <!-- 6. Add Itinerary Activity Modal -->
+  <div class="modal-backdrop" id="addActivityModal">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <h3 class="modal-title">Add Itinerary Activity</h3>
+        <button class="modal-close-btn" onclick="itineraryPlanner.closeAddActivityModal()">✕</button>
+      </div>
+      <div class="modal-body">
+        <form id="addActivityForm">
+          <div class="form-group">
+            <label>Time Slot *</label>
+            <input type="text" id="actTime" class="form-control" required placeholder="e.g. 09:30 AM" />
+          </div>
+          <div class="form-group">
+            <label>Activity Title *</label>
+            <input type="text" id="actTitle" class="form-control" required placeholder="e.g. Visit Golden Pavilion & Tea Ceremony" />
+          </div>
+          <div class="form-group">
+            <label>Location / Venue</label>
+            <input type="text" id="actLocation" class="form-control" placeholder="e.g. Kyoto Old District" />
+          </div>
+          <div class="form-group">
+            <label>Estimated Cost (in USD)</label>
+            <input type="number" id="actCost" class="form-control" min="0" placeholder="e.g. 45" />
+          </div>
+          <div class="form-group">
+            <label>Notes / Tips</label>
+            <textarea id="actNotes" class="form-control" rows="2" placeholder="e.g. Remember to bring comfortable walking shoes"></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary btn-block btn-lg">Add to Timeline ➔</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- 7. Write Review Modal -->
+  <div class="modal-backdrop" id="writeReviewModal">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <h3 class="modal-title">Share Your Experience</h3>
+        <button class="modal-close-btn" onclick="reviewsManager.closeWriteReviewModal()">✕</button>
+      </div>
+      <div class="modal-body">
+        <form id="writeReviewForm">
+          <div class="form-group">
+            <label>Your Name *</label>
+            <input type="text" id="revAuthor" class="form-control" required placeholder="Elena Rostova" />
+          </div>
+          <div class="form-group">
+            <label>Select Tour / Destination *</label>
+            <select id="revDestSelect" class="form-control" required>
+              <!-- Dynamically populated -->
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Rating *</label>
+            <div style="display: flex; gap: 0.5rem; font-size: 2rem; cursor: pointer;">
+              <button type="button" class="star-select-btn" data-value="1" style="color: #f59e0b;">★</button>
+              <button type="button" class="star-select-btn" data-value="2" style="color: #f59e0b;">★</button>
+              <button type="button" class="star-select-btn" data-value="3" style="color: #f59e0b;">★</button>
+              <button type="button" class="star-select-btn" data-value="4" style="color: #f59e0b;">★</button>
+              <button type="button" class="star-select-btn" data-value="5" style="color: #f59e0b;">★</button>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Your Review *</label>
+            <textarea id="revComment" class="form-control" rows="4" required placeholder="What was the highlight of your trip? How was the service, hotel, and tour guide?"></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary btn-block btn-lg">Publish Review ➔</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- 8. Fullscreen Photo Lightbox Modal -->
+  <div class="lightbox-modal" id="lightboxModal">
+    <button class="lightbox-nav-btn" style="position: absolute; top: 1.5rem; right: 1.5rem; z-index: 3100;" onclick="galleryManager.closeLightbox()">✕</button>
+    <div class="lightbox-image-container">
+      <img id="lightboxImg" src="" alt="Enlarged gallery photo" />
+      <div class="lightbox-caption" id="lightboxCaption"></div>
+    </div>
+    <div class="lightbox-controls">
+      <button class="lightbox-nav-btn" onclick="galleryManager.prevImage()">❮</button>
+      <button class="lightbox-nav-btn" onclick="galleryManager.nextImage()">❯</button>
+    </div>
+  </div>
+
+  <!-- JavaScript Modules -->
+  <script src="js/animated-bg.js"></script>
+  <script src="js/data.js"></script>
+  <script src="js/store.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/search-filter.js"></script>
+  <script src="js/booking.js"></script>
+  <script src="js/itinerary.js"></script>
+  <script src="js/gallery.js"></script>
+  <script src="js/reviews.js"></script>
+  <script src="js/chatbot.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
